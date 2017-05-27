@@ -35,7 +35,8 @@ public class FalseRuleActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         Intent i = getIntent();
-        func.setText(i.getStringExtra("equation"));
+        String s = "f(x) = " + i.getStringExtra("equation");
+        func.setText(s);
         expr = new Expression(func.getText().toString());
     }
 
