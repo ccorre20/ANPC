@@ -72,7 +72,7 @@
             android:id="@+id/button9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="run"
+            android:onClick="runIncSearch"
             android:text="Run" />
 
         <TextView

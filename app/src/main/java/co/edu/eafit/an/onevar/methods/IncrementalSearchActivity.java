@@ -39,7 +39,7 @@ public class IncrementalSearchActivity extends AppCompatActivity {
         expr = new Expression(func.getText().toString());
     }
 
-    public void run(View v){
+    public void runIncSearch(View v){
         String temp;
         BigDecimal x0 = BigDecimal.valueOf(Double.parseDouble(x0_et.getText().toString()));
         BigDecimal delta = BigDecimal.valueOf(Double.parseDouble(delta_et.getText().toString()));
