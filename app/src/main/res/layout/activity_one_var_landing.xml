@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.edu.eafit.an.LandingActivity">
+    tools:context="co.edu.eafit.an.onevar.OneVarLandingActivity">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -18,19 +18,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="8dp"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to AN"
+            android:text="One Variable Equations"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="30sp" />
@@ -38,46 +38,29 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.15" />
+            android:layout_weight="0.07" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Please choose one of the following options"
+            android:text="Please input the equation that you'll be using"
             android:textAlignment="center" />
 
-        <Space
+        <EditText
+            android:id="@+id/et1onevar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.08" />
+            android:ems="10"
+            android:hint="Input the RHS of f(x)="
+            android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/blanding1"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="Button1"
-            android:text="One Variable Equations" />
+            android:onClick="parseAndVerify"
+            android:text="Parse and Verify" />
 
-        <Button
-            android:id="@+id/blanding2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="Button2"
-            android:text="Linear Equation Systems" />
-
-        <Button
-            android:id="@+id/blanding3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="Button3"
-            android:text="Interpolation" />
-
-        <Button
-            android:id="@+id/blanding4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="Button4"
-            android:text="Numerical Differentiation" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

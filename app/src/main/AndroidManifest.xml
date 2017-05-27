@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".onevar.OneVarLandingActivity" />
+        <activity android:name=".onevar.OneVarChooseMethodActivity"></activity>
     </application>
 
 </manifest>
