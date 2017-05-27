@@ -70,10 +70,13 @@ public class NewtonActivity extends AppCompatActivity {
         if(y.compareTo(BigDecimal.ZERO) == 0){
             temp = "x = " + x0.toString() + " is a root";
             results.setText(temp);
-        }else if(error.compareTo(tol) < 0) {
+        } else if(error.compareTo(tol) < 0) {
             temp = "x = " + x0.toString() + " is an approximate root, err=" + error.toString();
             results.setText(temp);
-        }else{
+        } else if(dy.compareTo(BigDecimal.ZERO) == 0 ){
+            temp = "at x = " + x0.toString() + " there are possibly multiple roots";
+            results.setText(temp);
+        } else {
             temp = "the method failed after" + niter + " iterations";
             results.setText(temp);
         }
