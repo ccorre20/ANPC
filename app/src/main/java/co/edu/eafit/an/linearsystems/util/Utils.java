@@ -34,4 +34,32 @@ public class Utils {
         return x;
     }
 
+    public static double[][]  PartialPivot(double[][] Ab, int k){
+        int n = Ab.length;
+        double largest = Math.abs(Ab[k][k]);
+        int largestrow = k;
+        for(int s = k+1; s < n; s++){
+            if(Math.abs(Ab[s][k]) > largest){
+                largest = Math.abs(Ab[s][k]);
+                largestrow = s;
+            }
+        }
+        if(largest == 0.0f){
+            //TODO: Fix this and throw error instead, add error handling
+            return Ab;
+        } else {
+            if (largestrow != k){
+                Ab = ExchangeRows(Ab, largestrow, k);
+            }
+            return Ab;
+        }
+    }
+
+    public static double[][] ExchangeRows(double[][] Ab, int r1, int r2){
+        double t[] = Ab[r1];
+        Ab[r1] = Ab[r2];
+        Ab[r2] = t;
+        return Ab;
+    }
+
 }

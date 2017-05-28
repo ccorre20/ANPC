@@ -21,9 +21,10 @@ public class GaussActivity extends AppCompatActivity {
         b = (double[]) intent.getExtras().getSerializable("b");
     }
 
-    public void run(View v){
+    public void runGauss(View v){
         int n = a.length;
         double mult;
+        //Method Begins
         double m[][] = Utils.augmentMatrix(a,b);
         for (int k = 0; k < n-1; k++){
             for (int i = k+1; i < n; i++){
