@@ -38,56 +38,56 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnIncSearch"
+            android:onClick="gauss"
             android:text="Gaussian Elimination" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnBisection"
+            android:onClick="partialPivotGauss"
             android:text="Partialy Pivoting Gaussian Elimination" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnFalseRule"
+            android:onClick="totalPivotGauss"
             android:text="Totally Pivoting Gaussian Elimination" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnFixedPoint"
+            android:onClick="luGauss"
             android:text="LU Factorization with Gaussian Elimination" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnNewton"
+            android:onClick="luPivotGauss"
             android:text="LU Factorization with Partial Pivoting" />
 
         <Button
             android:id="@+id/button10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnNewton"
+            android:onClick="directLu"
             android:text="Direct LU Factorization" />
 
         <Button
             android:id="@+id/button6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnSecant"
+            android:onClick="jacobi"
             android:text="Jacobi" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnMultipleRoot"
+            android:onClick="gaussSeidel"
             android:text="Gauss Seidel" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

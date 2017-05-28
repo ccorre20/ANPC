@@ -26,7 +26,15 @@
         <activity android:name=".onevar.methods.SecantActivity" />
         <activity android:name=".onevar.methods.MultipleRootActivity" />
         <activity android:name=".linearsystems.LinearSystemLandingActivity" />
-        <activity android:name=".linearsystems.LinearSystemChooseMethodActivity"></activity>
+        <activity android:name=".linearsystems.LinearSystemChooseMethodActivity" />
+        <activity android:name=".linearsystems.methods.GaussActivity" />
+        <activity android:name=".linearsystems.methods.PartialPivotGaussActivity" />
+        <activity android:name=".linearsystems.methods.TotalPivotGaussActivity" />
+        <activity android:name=".linearsystems.methods.LUGaussActivity" />
+        <activity android:name=".linearsystems.methods.LUPivotGaussActivity" />
+        <activity android:name=".linearsystems.methods.DirectLUActivity" />
+        <activity android:name=".linearsystems.methods.JacobiActivity" />
+        <activity android:name=".linearsystems.methods.GaussSeidelActivity"></activity>
     </application>
 
 </manifest>
