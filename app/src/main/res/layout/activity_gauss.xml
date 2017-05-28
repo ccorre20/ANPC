@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context="co.edu.eafit.an.linearsystems.methods.GaussActivity">
 
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="run"
+        android:text="RUN"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="178dp" />
 </android.support.constraint.ConstraintLayout>
