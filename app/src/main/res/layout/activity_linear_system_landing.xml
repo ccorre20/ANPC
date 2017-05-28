@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.edu.eafit.an.linearsystems.LinearSystemLandingActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="7dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please input the matrix's size (nxn)"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/matrix_landing_sizeet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="n = "
+            android:inputType="number"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1.00" />
+
+            <Button
+                android:id="@+id/matrix_landing_sizebtn"
+                android:layout_width="59dp"
+                android:layout_height="wrap_content"
+                android:onClick="mSize"
+                android:text="OK" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1.04" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/matrix_landing_aijhelptv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please input each element in order"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/matrix_landing_aijtv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="a11 ="
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/matrix_landing_realinputet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/matrix_landing_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="mBack"
+                android:text="Back"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/matrix_landing_insertbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="mInsert"
+                android:text="Insert"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -24,7 +24,9 @@
         <activity android:name=".onevar.methods.FixedPointActivity" />
         <activity android:name=".onevar.methods.NewtonActivity" />
         <activity android:name=".onevar.methods.SecantActivity" />
-        <activity android:name=".onevar.methods.MultipleRootActivity"></activity>
+        <activity android:name=".onevar.methods.MultipleRootActivity" />
+        <activity android:name=".linearsystems.LinearSystemLandingActivity" />
+        <activity android:name=".linearsystems.LinearSystemChooseMethodActivity"></activity>
     </application>
 
 </manifest>
