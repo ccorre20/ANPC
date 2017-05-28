@@ -37,7 +37,7 @@ public class NewtonActivity extends AppCompatActivity {
         Intent i = getIntent();
         String s = "f(x) = " + i.getStringExtra("equation");
         func.setText(s);
-        expr = new Expression(func.getText().toString());
+        expr = new Expression(i.getStringExtra("equation"));
     }
 
     public void runNewton(View v){
@@ -54,31 +54,35 @@ public class NewtonActivity extends AppCompatActivity {
             return;
         }
         //Method Begins
-        BigDecimal y = expr.with("x",x0).eval();
-        BigDecimal dy = gexpr.with("x",x0).eval();
-        int count = 0;
-        BigDecimal error = tol.add(BigDecimal.ONE);
-        while(error.compareTo(tol) > 0 && y.compareTo(BigDecimal.ZERO) != 0 && dy.compareTo(BigDecimal.ZERO) != 0 && count < niter){
-            //x1 = x0 - (y/dy)
-            x1 = x0.subtract(y.divide(dy,BigDecimal.ROUND_HALF_EVEN));
-            y = expr.with("x",x1).eval();
-            dy = gexpr.with("x",x1).eval();
-            error = x1.subtract(x0).abs();
-            x0 = x1;
-            count++;
-        }
-        if(y.compareTo(BigDecimal.ZERO) == 0){
-            temp = "x = " + x0.toString() + " is a root";
-            results.setText(temp);
-        } else if(error.compareTo(tol) < 0) {
-            temp = "x = " + x0.toString() + " is an approximate root, err=" + error.toString();
-            results.setText(temp);
-        } else if(dy.compareTo(BigDecimal.ZERO) == 0 ){
-            temp = "at x = " + x0.toString() + " there are possibly multiple roots";
-            results.setText(temp);
-        } else {
-            temp = "the method failed after" + niter + " iterations";
-            results.setText(temp);
+        try {
+            BigDecimal y = expr.with("x", x0).eval();
+            BigDecimal dy = gexpr.with("x", x0).eval();
+            int count = 0;
+            BigDecimal error = tol.add(BigDecimal.ONE);
+            while (error.compareTo(tol) > 0 && y.compareTo(BigDecimal.ZERO) != 0 && dy.compareTo(BigDecimal.ZERO) != 0 && count < niter) {
+                //x1 = x0 - (y/dy)
+                x1 = x0.subtract(y.divide(dy, BigDecimal.ROUND_HALF_EVEN));
+                y = expr.with("x", x1).eval();
+                dy = gexpr.with("x", x1).eval();
+                error = x1.subtract(x0).abs();
+                x0 = x1;
+                count++;
+            }
+            if (y.compareTo(BigDecimal.ZERO) == 0) {
+                temp = "x = " + x0.toString() + " is a root";
+                results.setText(temp);
+            } else if (error.compareTo(tol) < 0) {
+                temp = "x = " + x0.toString() + " is an approximate root, err=" + error.toString();
+                results.setText(temp);
+            } else if (dy.compareTo(BigDecimal.ZERO) == 0) {
+                temp = "at x = " + x0.toString() + " there are possibly multiple roots";
+                results.setText(temp);
+            } else {
+                temp = "the method failed after" + niter + " iterations";
+                results.setText(temp);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

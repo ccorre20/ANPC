@@ -38,7 +38,7 @@ public class MultipleRootActivity extends AppCompatActivity {
         Intent i = getIntent();
         String s = "f(x) = " + i.getStringExtra("equation");
         func.setText(s);
-        expr = new Expression(func.getText().toString());
+        expr = new Expression(i.getStringExtra("equation"));
     }
 
     public void runMultipleRoot(View v){

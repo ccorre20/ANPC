@@ -37,7 +37,7 @@ public class BisectionActivity extends AppCompatActivity {
         Intent i = getIntent();
         String s = "f(x) = " + i.getStringExtra("equation");
         func.setText(s);
-        expr = new Expression(func.getText().toString());
+        expr = new Expression(i.getStringExtra("equation"));
     }
 
     public void runBisection(View v){
@@ -54,57 +54,61 @@ public class BisectionActivity extends AppCompatActivity {
         //Method Begins
         //yi = f(xi)
         //ys = f(xs)
-        BigDecimal yi = expr.with("x",xi).eval();
-        BigDecimal ys = expr.with("x",xs).eval();
-        //yi = 0
-        if(yi.compareTo(BigDecimal.ZERO) == 0){
-            temp = "x = " + xi.toString() + " is a root";
-            results.setText(temp);
-        //ys = 0
-        }else if(ys.compareTo(BigDecimal.ZERO) == 0){
-            temp = "x = " + xs.toString() + " is a root";
-            results.setText(temp);
-        // ys*yi < 0
-        }else if(yi.multiply(ys).compareTo(BigDecimal.ZERO) < 0){
-            //xm = (xi + xs)/2
-            BigDecimal xm = (xi.add(xs)).divide(BigDecimal.valueOf(2),BigDecimal.ROUND_HALF_EVEN);
-            //ym = f(xm)
-            BigDecimal ym = expr.with("x",xm).eval();
-            int count = 1;
-            //error = tol + 1
-            BigDecimal error = tol.add(BigDecimal.ONE);
-            //error > tol && ym != 0 && count < niter
-            while(error.compareTo(tol) > 0 && ym.compareTo(BigDecimal.ZERO) != 0 && count < niter){
-                //yi*ys < 0
-                if(yi.multiply(ym).compareTo(BigDecimal.ZERO) < 0){
-                    xs = xm;
-                    ys = ym;
-                }else{
-                    xi = xm;
-                    yi = ym;
-                }
-                xaux = xm;
+        try {
+            BigDecimal yi = expr.with("x", xi).eval();
+            BigDecimal ys = expr.with("x", xs).eval();
+            //yi = 0
+            if (yi.compareTo(BigDecimal.ZERO) == 0) {
+                temp = "x = " + xi.toString() + " is a root";
+                results.setText(temp);
+                //ys = 0
+            } else if (ys.compareTo(BigDecimal.ZERO) == 0) {
+                temp = "x = " + xs.toString() + " is a root";
+                results.setText(temp);
+                // ys*yi < 0
+            } else if (yi.multiply(ys).compareTo(BigDecimal.ZERO) < 0) {
                 //xm = (xi + xs)/2
-                xm = (xi.add(xs)).divide(BigDecimal.valueOf(2),BigDecimal.ROUND_HALF_EVEN);
+                BigDecimal xm = (xi.add(xs)).divide(BigDecimal.valueOf(2), BigDecimal.ROUND_HALF_EVEN);
                 //ym = f(xm)
-                ym = expr.with("x",xm).eval();
-                //error = abs(xm-xaux)
-                error = xm.subtract(xaux).abs();
-                count++;
+                BigDecimal ym = expr.with("x", xm).eval();
+                int count = 1;
+                //error = tol + 1
+                BigDecimal error = tol.add(BigDecimal.ONE);
+                //error > tol && ym != 0 && count < niter
+                while (error.compareTo(tol) > 0 && ym.compareTo(BigDecimal.ZERO) != 0 && count < niter) {
+                    //yi*ys < 0
+                    if (yi.multiply(ym).compareTo(BigDecimal.ZERO) < 0) {
+                        xs = xm;
+                        ys = ym;
+                    } else {
+                        xi = xm;
+                        yi = ym;
+                    }
+                    xaux = xm;
+                    //xm = (xi + xs)/2
+                    xm = (xi.add(xs)).divide(BigDecimal.valueOf(2), BigDecimal.ROUND_HALF_EVEN);
+                    //ym = f(xm)
+                    ym = expr.with("x", xm).eval();
+                    //error = abs(xm-xaux)
+                    error = xm.subtract(xaux).abs();
+                    count++;
+                }
+                if (ym.compareTo(BigDecimal.ZERO) == 0) {
+                    temp = "x = " + xm.toString() + " is a root";
+                    results.setText(temp);
+                } else if (error.compareTo(tol) < 0) {
+                    temp = "x = " + xm.toString() + " is an approximate root, err=" + error.toString();
+                    results.setText(temp);
+                } else {
+                    temp = "the method failed after" + niter + " iterations";
+                    results.setText(temp);
+                }
+            } else {
+                temp = "Inadequate interval";
+                results.setText(temp);
             }
-            if(ym.compareTo(BigDecimal.ZERO) == 0){
-                temp = "x = " + xm.toString() + " is a root";
-                results.setText(temp);
-            }else if(error.compareTo(tol) < 0){
-                temp = "x = " + xm.toString() + " is an approximate root, err=" + error.toString();
-                results.setText(temp);
-            }else{
-                temp = "the method failed after" + niter+ " iterations";
-                results.setText(temp);
-            }
-        }else{
-            temp = "Inadequate interval";
-            results.setText(temp);
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
