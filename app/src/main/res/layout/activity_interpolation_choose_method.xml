@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.edu.eafit.an.onevar.OneVarChooseMethodActivity">
+    tools:context="co.edu.eafit.an.interpolation.InterpolationChooseMethodActivity">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -25,18 +25,41 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp">
 
-        <TextView
-            android:id="@+id/solution"
+        <Button
+            android:id="@+id/boes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Solution"
-            android:visibility="invisible"/>
+            android:onClick="boesMethod"
+            android:text="Based on Equations' Systems"/>
 
-        <TextView
-            android:id="@+id/polynomial"
+        <Button
+            android:id="@+id/nip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="invisible"/>
+            android:onClick="nipMethod"
+            android:text="Newton's Interpolating Polynomial"/>
+
+        <Button
+            android:id="@+id/nipdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="nipddMethod"
+            android:text="N.I.P. with Divided Differences"/>
+
+        <Button
+            android:id="@+id/lip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="lipMethod"
+            android:text="Lagrange's Interpolating Polynomial"/>
+
+        <Button
+            android:id="@+id/nm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="nmMethod"
+            android:text="Neville's Method"/>
 
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

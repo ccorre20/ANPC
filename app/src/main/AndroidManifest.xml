@@ -36,6 +36,9 @@
         <activity android:name=".linearsystems.methods.JacobiActivity" />
         <activity android:name=".linearsystems.methods.GaussSeidelActivity" />
         <activity android:name=".interpolation.BasedOnESActivity" />
+        <activity android:name=".interpolation.InterpolationChooseMethodActivity" />
+        <activity android:name=".interpolation.InterpolationLandingActivity" />
+        <activity android:name=".interpolation.NewtonPolynomialActivity"></activity>
     </application>
 
 </manifest>

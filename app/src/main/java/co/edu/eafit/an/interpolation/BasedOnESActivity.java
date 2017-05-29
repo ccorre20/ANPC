@@ -1,5 +1,6 @@
 package co.edu.eafit.an.interpolation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,9 +23,8 @@ import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class BasedOnESActivity extends AppCompatActivity {
 
-    Button knownPointsButton, nextPoint;
-    EditText knownPoints, inputPoints;
-    TextView insertPoints, solution, polynomial;
+
+    TextView solution, polynomial;
 
     int i, j, n;
     double points[];
@@ -34,55 +34,19 @@ public class BasedOnESActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_based_on_es);
 
-        knownPointsButton = (Button)findViewById(R.id.know_points_ok);
-        knownPoints = (EditText) findViewById(R.id.known_points);
-        inputPoints = (EditText) findViewById(R.id.inputPoints);
-        nextPoint = (Button) findViewById(R.id.nextPoint);
-        insertPoints = (TextView) findViewById(R.id.insertPoints);
+        Intent intent = getIntent();
+        points = (double[]) intent.getExtras().getSerializable("points");
+
         solution = (TextView) findViewById(R.id.solution);
         polynomial = (TextView) findViewById(R.id.polynomial);
+
+        calculatePolynomial(points);
     }
 
-    public void insertPoints(View v) {
-        n = Integer.parseInt(knownPoints.getText().toString());
+    public void calculatePolynomial(double[] points) {
 
-        if (n > 0) {
-            knownPointsButton.setEnabled(false);
-            knownPointsButton.setVisibility(View.INVISIBLE);
-            knownPoints.setEnabled(false);
-            knownPoints.setVisibility(View.INVISIBLE);
+        int len = points.length / 2;
 
-            insertPoints.setVisibility(View.VISIBLE);
-            inputPoints.setVisibility(View.VISIBLE);
-            nextPoint.setVisibility(View.VISIBLE);
-
-            i = 0;
-
-            points = new double[n * 2];
-        } else {
-            Toast.makeText(getApplicationContext(), "Wrong parameter", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void nextPoint(View v) {
-        Double point = Double.parseDouble(inputPoints.getText().toString());
-
-        if (i < (n * 2)) {
-            points[i] = point;
-            i++;
-            if (i % 2 == 0) insertPoints.setText("x" + i / 2);
-            else insertPoints.setText("y" + i / 2);
-        }
-
-        if (i == (n * 2)) {
-            inputPoints.setEnabled(false);
-            nextPoint.setEnabled(false);
-            calculatePolynomial(points, n);
-        }
-
-    }
-
-    public void calculatePolynomial(double[] points, int len) {
         double[][] a = new double[len][len];
         double[] b = new double[len];
 
@@ -98,9 +62,6 @@ public class BasedOnESActivity extends AppCompatActivity {
 
         double[] sol = solveSystem(a,b);
 
-        nextPoint.setVisibility(View.INVISIBLE);
-        insertPoints.setVisibility(View.INVISIBLE);
-        inputPoints.setVisibility(View.INVISIBLE);
         solution.setVisibility(View.VISIBLE);
         polynomial.setVisibility(View.VISIBLE);
 
