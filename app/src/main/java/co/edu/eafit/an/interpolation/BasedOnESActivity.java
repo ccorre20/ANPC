@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,12 +18,13 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class BasedOnESActivity extends AppCompatActivity {
 
     Button knownPointsButton, nextPoint;
     EditText knownPoints, inputPoints;
-    TextView insertPoints;
+    TextView insertPoints, solution, polynomial;
 
     int i, j, n;
     double points[];
@@ -37,6 +39,8 @@ public class BasedOnESActivity extends AppCompatActivity {
         inputPoints = (EditText) findViewById(R.id.inputPoints);
         nextPoint = (Button) findViewById(R.id.nextPoint);
         insertPoints = (TextView) findViewById(R.id.insertPoints);
+        solution = (TextView) findViewById(R.id.solution);
+        polynomial = (TextView) findViewById(R.id.polynomial);
     }
 
     public void insertPoints(View v) {
@@ -79,12 +83,65 @@ public class BasedOnESActivity extends AppCompatActivity {
     }
 
     public void calculatePolynomial(double[] points, int len) {
-        double[][] matrix = new double[len][len];
+        double[][] a = new double[len][len];
+        double[] b = new double[len];
 
-        for (i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                matrix[i][j] = Math.pow(points[i * 2], len - (j + 1));
+        for (i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+                a[i][j] = Math.pow(points[i * 2], len - (j + 1));
+            }
+            b[i] = points[(i * 2) + 1];
+            System.out.print(Arrays.toString(a[i]) + " = ");
+            System.out.println(b[i]);
+
+        }
+
+        double[] sol = solveSystem(a,b);
+
+        nextPoint.setVisibility(View.INVISIBLE);
+        insertPoints.setVisibility(View.INVISIBLE);
+        inputPoints.setVisibility(View.INVISIBLE);
+        solution.setVisibility(View.VISIBLE);
+        polynomial.setVisibility(View.VISIBLE);
+
+        String pol = "p(x) = ";
+        for (int i = 0; i < len; i++) {
+            if (sol[i] >= 0 && i != 0) pol += "+";
+            if ((len - (i + 1)) == 0) pol += sol[i];
+            else if ((len - (i + 1)) == 1) pol += sol[i] + "x";
+            else pol += sol[i] + "x^" + (len - (i + 1));
+        }
+
+        polynomial.setText(pol);
+    }
+
+    public double[] solveSystem(double[][] a, double[] b) {
+
+        // Solving with Total Pivot Gauss
+
+        int n = a.length;
+        int marks[] = new int[n];
+        for(int i = 0; i<n; i++){
+            marks[i] = i;
+        }
+        double mult;
+        Utils.MatrixMarks mm;
+        //Method Begins
+        double m[][] = Utils.augmentMatrix(a,b);
+        for (int k = 0; k < n-1; k++){
+            mm = Utils.totalPivot(m,k,marks);
+            m = mm.Ab;
+            marks = mm.marks;
+            for (int i = k+1; i < n; i++){
+                mult = m[i][k]/m[k][k];
+                for (int j = k; j < n+1; j++){
+                    m[i][j] = m[i][j] - mult*m[k][j];
+                }
             }
         }
+        double x[] = Utils.regressiveSubstitution(m);
+        x = Utils.markAwareX(x,marks);
+
+        return x;
     }
 }

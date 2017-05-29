@@ -83,5 +83,18 @@
                 android:visibility="invisible" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/solution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Solution"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/polynomial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
