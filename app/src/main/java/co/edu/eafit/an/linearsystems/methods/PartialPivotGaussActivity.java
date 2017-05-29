@@ -27,7 +27,7 @@ public class PartialPivotGaussActivity extends AppCompatActivity {
         //Method Begins
         double m[][] = Utils.augmentMatrix(a,b);
         for (int k = 0; k < n-1; k++){
-            m = Utils.PartialPivot(m, k);
+            m = Utils.partialPivot(m, k);
             for (int i = k+1; i < n; i++){
                 mult = m[i][k]/m[k][k];
                 for (int j = k; j < n+1; j++){
