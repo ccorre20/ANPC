@@ -35,6 +35,6 @@ public class PartialPivotGaussActivity extends AppCompatActivity {
                 }
             }
         }
-        double x[] = Utils.regresiveSubstitution(m);
+        double x[] = Utils.regressiveSubstitution(m);
     }
 }

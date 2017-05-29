@@ -43,7 +43,7 @@ public class TotalPivotGaussActivity extends AppCompatActivity {
                 }
             }
         }
-        double x[] = Utils.regresiveSubstitution(m);
+        double x[] = Utils.regressiveSubstitution(m);
         x = Utils.markAwareX(x,marks);
         Log.d("XOUTPUT",x.toString());
     }

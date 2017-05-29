@@ -34,7 +34,7 @@ public class GaussActivity extends AppCompatActivity {
                 }
             }
         }
-        double x[] = Utils.regresiveSubstitution(m);
+        double x[] = Utils.regressiveSubstitution(m);
     }
 
 

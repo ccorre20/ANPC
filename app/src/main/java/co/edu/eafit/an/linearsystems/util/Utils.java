@@ -11,6 +11,38 @@ public class Utils {
         public int marks[];
     }
 
+    public static class LU{
+        public double L[][];
+        public double U[][];
+    }
+
+    public static LU LUGauss(double[][] a){
+        int n = a.length;
+        LU mlu = new LU();
+        mlu.L = constructIdentity(n);
+        //mlu.U = constructIdentity(n);
+        double mult;
+        for (int k = 0; k < n-1; k++){
+            for (int i = k+1; i < n; i++){
+                mult = a[i][k]/a[k][k];
+                mlu.L[i][k] = mult;
+                for (int j = k; j < n; j++){
+                    a[i][j] = a[i][j] - mult*a[k][j];
+                }
+            }
+        }
+        mlu.U = a;
+        return mlu;
+    }
+
+    public static double[][] constructIdentity(int n){
+        double a[][] = new double[n][n];
+        for (int i = 0; i < n; i++){
+            a[i][i] = 1;
+        }
+        return a;
+    }
+
     public static double[][] augmentMatrix(double[][] a, double[] b){
         double Ab[][] = new double[a.length][a.length+1];
         for (int i=0; i < a.length; i++){
@@ -24,12 +56,27 @@ public class Utils {
         return Ab;
     }
 
-    public static double[] regresiveSubstitution(double[][] Ab){
+    public static double[] progressiveSubstitution(double[][] Ab){
+        int n = Ab.length;
+        double x[] = new double[n];
+        double sum;
+        x[0] = Ab[0][n]/Ab[0][0];
+        for(int i = 1; i < n; i++){
+            sum = 0;
+            for (int p = 0; p < i; p++){
+                sum = sum + Ab[i][p]*x[p];
+            }
+            x[i] = (Ab[i][n] - sum)/Ab[i][i];
+        }
+        return x;
+    }
+
+    public static double[] regressiveSubstitution(double[][] Ab){
         int n = Ab.length;
         double x[] = new double[n];
         double sum;
         x[n-1] = Ab[n-1][n]/Ab[n-1][n-1];
-        for (int i = n -2; i > -1; i--){
+        for (int i = n - 2; i > -1; i--){
             sum = 0;
             for (int p = i+1; p < n; p++){
                 sum = sum + Ab[i][p]*x[p];
