@@ -16,6 +16,24 @@ public class Utils {
         public double U[][];
     }
 
+    public static class LUMarks extends LU{
+        public int marks[];
+    }
+
+    public static LUMarks LUGaussPivotingModified(double[][] a){
+        int n = a.length;
+        MatrixMarks mm = new MatrixMarks();
+        LUMarks mlu = new LUMarks();
+        mlu.L = constructIdentity(n);
+        int marcas[] = new int[n];
+        for(int i = 0; i < n; i++){
+            marcas[i] = i;
+        }
+        for(int k = 0; k < n-1; k++){
+
+        }
+    }
+
     public static LU LUGauss(double[][] a){
         int n = a.length;
         LU mlu = new LU();
@@ -104,6 +122,27 @@ public class Utils {
                 Ab = exchangeRows(Ab, largestrow, k);
             }
             return Ab;
+        }
+    }
+
+    public static LUMarks partialPivotWithMarks(double[][] A, int[] marks, int k){
+        int n = A.length;
+        double largest = Math.abs(A[k][k]);
+        int largestrow = k;
+        for(int s = k+1; s < n; s++){
+            if(Math.abs(A[s][k]) > largest){
+                largest = Math.abs(A[s][k]);
+                largestrow = s;
+            }
+        }
+        if(largest == 0.0f){
+            //TODO: Fix this and throw error instead, add error handling
+            return A;
+        } else {
+            if (largestrow != k){
+                A = exchangeRows(A, largestrow, k);
+            }
+            return A;
         }
     }
 
