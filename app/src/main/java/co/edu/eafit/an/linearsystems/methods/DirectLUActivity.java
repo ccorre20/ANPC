@@ -33,16 +33,25 @@ public class DirectLUActivity extends AppCompatActivity {
     public void doolitle(View v){
         choice = 1;
         brun.setEnabled(true);
+        bdoolitle.setEnabled(false);
+        bcroutl.setEnabled(true);
+        bcholesky.setEnabled(true);
     }
 
     public void croult(View v){
         choice = 2;
         brun.setEnabled(true);
+        bdoolitle.setEnabled(true);
+        bcroutl.setEnabled(false);
+        bcholesky.setEnabled(true);
     }
 
     public void cholesky(View v){
         choice = 3;
         brun.setEnabled(true);
+        bdoolitle.setEnabled(true);
+        bcroutl.setEnabled(true);
+        bcholesky.setEnabled(false);
     }
 
     public void runDirectLU(View v){

@@ -1,6 +1,6 @@
 package co.edu.eafit.an.linearsystems.util;
 
-import android.graphics.Matrix;
+import co.edu.eafit.an.linearsystems.methods.PartialPivotGaussActivity;
 
 /**
  * Created by User on 5/28/2017.
@@ -170,6 +170,151 @@ public class Utils {
             }
         }
         return mlu;
+    }
+
+    public static double norm(double[] x1, double[] x0){
+        int n = x1.length;
+        double sum = 0;
+        for(int i = 0; i < n; i++){
+            sum = sum + Math.pow(x1[i]-x0[i], 2);
+        }
+        return Math.sqrt(sum);
+    }
+
+    public static double[] doJacobiRelaxed(double[][] a, double[] b, double[] x0, double tol, double lambda, int niter){
+        int count = 0;
+        double disp = tol + 1;
+        double x1[];
+        while (disp > tol && count < niter){
+            x1 = calculateNewJacobiRelaxed(a,b,x0, lambda);
+            disp = norm(x1, x0);
+            x0 = x1;
+            count++;
+        }
+        if (disp < tol){
+            return x0;
+        } else {
+            return null;
+        }
+    }
+
+    public static double[] calculateNewJacobiRelaxed(double[][] a, double b[], double[] x0, double lambda){
+        int n = a.length;
+        double sum, x1[] = new double[x0.length];
+        for (int i = 0; i < n; i++){
+            sum = 0;
+            for (int j = 0; j < n; j++){
+                if(j != i){
+                    sum = sum + a[i][j] * x0[j];
+                }
+            }
+            x1[i] = (b[i] - sum)/a[i][i];
+            x1[i] = lambda*x1[i] + (1-lambda)*x0[i];
+        }
+        return x1;
+    }
+
+    public static double[] doJacobi(double[][] a, double[] b, double[] x0, double tol, int niter){
+        int count = 0;
+        double disp = tol + 1;
+        double x1[];
+        while (disp > tol && count < niter){
+            x1 = calculateNewJacobi(a,b,x0);
+            disp = norm(x1, x0);
+            x0 = x1;
+            count++;
+        }
+        if (disp < tol){
+         return x0;
+        } else {
+            return null;
+        }
+    }
+
+    public static double[] calculateNewJacobi(double[][] a, double b[], double[] x0){
+        int n = a.length;
+        double sum, x1[] = new double[x0.length];
+        for (int i = 0; i < n; i++){
+            sum = 0;
+            for (int j = 0; j < n; j++){
+                if(j != i){
+                    sum = sum + a[i][j] * x0[j];
+                }
+            }
+            x1[i] = (b[i] - sum)/a[i][i];
+        }
+        return x1;
+    }
+
+    public static double[] doGaussSeidelRelaxed(double[][] a, double[] b, double[] x0, double tol, double lambda, int niter){
+        int count = 0;
+        double disp = tol + 1;
+        double x1[];
+        while (disp > tol && count < niter){
+            x1 = calculateNewGaussSeidelRelaxed(a,b,x0, lambda);
+            disp = norm(x1, x0);
+            x0 = x1;
+            count++;
+        }
+        if (disp < tol){
+            return x0;
+        } else {
+            return null;
+        }
+    }
+
+    public static double[] calculateNewGaussSeidelRelaxed(double[][] a, double b[], double[] x0, double lambda){
+        int n = a.length;
+        double sum, x1[] = new double[x0.length];
+        for (int i = 0; i < n; i++){
+            x1[i] = x0[i];
+        }
+        for (int i = 0; i < n; i++){
+            sum = 0;
+            for (int j = 0; j < n; j++){
+                if(j != i){
+                    sum = sum + a[i][j] * x1[j];
+                }
+            }
+            x1[i] = (b[i] - sum)/a[i][i];
+            x1[i] = lambda*x1[i] + (1-lambda)*x0[i];
+        }
+        return x1;
+    }
+
+    public static double[] doGaussSeidel(double[][] a, double[] b, double[] x0, double tol, int niter){
+        int count = 0;
+        double disp = tol + 1;
+        double x1[];
+        while (disp > tol && count < niter){
+            x1 = calculateNewGaussSeidel(a,b,x0);
+            disp = norm(x1, x0);
+            x0 = x1;
+            count++;
+        }
+        if (disp < tol){
+            return x0;
+        } else {
+            return null;
+        }
+    }
+
+    public static double[] calculateNewGaussSeidel(double[][] a, double b[], double[] x0){
+        int n = a.length;
+        double sum, x1[] = new double[x0.length];
+        for (int i = 0; i < n; i++){
+            x1[i] = x0[i];
+        }
+        for (int i = 0; i < n; i++){
+            sum = 0;
+            for (int j = 0; j < n; j++){
+                if(j != i){
+                    sum = sum + a[i][j] * x1[j];
+                }
+            }
+            x1[i] = (b[i] - sum)/a[i][i];
+        }
+        return x1;
     }
 
     public static double[][] constructIdentity(int n){
