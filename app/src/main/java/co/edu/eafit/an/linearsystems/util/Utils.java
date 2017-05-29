@@ -1,5 +1,7 @@
 package co.edu.eafit.an.linearsystems.util;
 
+import android.graphics.Matrix;
+
 /**
  * Created by User on 5/28/2017.
  */
@@ -22,16 +24,39 @@ public class Utils {
 
     public static LUMarks LUGaussPivotingModified(double[][] a){
         int n = a.length;
-        MatrixMarks mm = new MatrixMarks();
+        MatrixMarks mm;
         LUMarks mlu = new LUMarks();
         mlu.L = constructIdentity(n);
-        int marcas[] = new int[n];
+        int marks[] = new int[n];
+        double mult;
         for(int i = 0; i < n; i++){
-            marcas[i] = i;
+            marks[i] = i;
         }
         for(int k = 0; k < n-1; k++){
-
+            mm = partialPivotWithMarks(a,marks,k);
+            a = mm.Ab;
+            marks = mm.marks;
+            for (int i = k+1; i < n; i++){
+                a[i][k] = a[i][k]/a[k][k];
+                /*
+                mult = a[i][k]/a[k][k];
+                mlu.L[i][k] = mult;
+                //Instead of working with A and deconstructing it, we simple clear a normally
+                //and insert into L, thus, giving us U as well, simplifying the method.
+                */
+                for(int j = k+1; j < n; j++){
+                    a[i][j] = a[i][j] - a[i][k]*a[k][j];
+                }
+            }
         }
+        for(int j = 0; j < n-1; j++){
+            for(int i = j+1; i < n; i++){
+                mlu.L[i][j] = a[i][j];
+            }
+        }
+        mlu.U = a;
+        mlu.marks = marks;
+        return mlu;
     }
 
     public static LU LUGauss(double[][] a){
@@ -125,7 +150,8 @@ public class Utils {
         }
     }
 
-    public static LUMarks partialPivotWithMarks(double[][] A, int[] marks, int k){
+    public static MatrixMarks partialPivotWithMarks(double[][] A, int[] marks, int k){
+        MatrixMarks r = new MatrixMarks();
         int n = A.length;
         double largest = Math.abs(A[k][k]);
         int largestrow = k;
@@ -137,13 +163,15 @@ public class Utils {
         }
         if(largest == 0.0f){
             //TODO: Fix this and throw error instead, add error handling
-            return A;
         } else {
             if (largestrow != k){
                 A = exchangeRows(A, largestrow, k);
+                marks = exchangeMarks(marks, largestrow, k);
             }
-            return A;
         }
+        r.Ab = A;
+        r.marks = marks;
+        return r;
     }
 
     public static MatrixMarks totalPivot(double[][] Ab, int k, int[] marks){

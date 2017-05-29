@@ -23,7 +23,8 @@ public class LUPivotGaussActivity extends AppCompatActivity {
     }
 
     public void runLUPivotGaussActivity(View v){
-        Utils.LU mlu = Utils.LUGaussPivotingModified(a);
+        Utils.LUMarks mlu = Utils.LUGaussPivotingModified(a);
+        b = Utils.markAwareX(b,mlu.marks);
         double z[] = Utils.progressiveSubstitution(Utils.augmentMatrix(mlu.L,b));
         double x[] = Utils.regressiveSubstitution(Utils.augmentMatrix(mlu.U,z));
         Log.d("XOUTPUT",x.toString());
