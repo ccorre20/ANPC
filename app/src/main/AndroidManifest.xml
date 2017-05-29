@@ -35,10 +35,7 @@
         <activity android:name=".linearsystems.methods.DirectLUActivity" />
         <activity android:name=".linearsystems.methods.JacobiActivity" />
         <activity android:name=".linearsystems.methods.GaussSeidelActivity" />
-        <activity
-            android:name=".interpolation.BasedOnESActivity"
-            android:label="@string/title_activity_based_on_es"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".interpolation.BasedOnESActivity" />
     </application>
 
 </manifest>
