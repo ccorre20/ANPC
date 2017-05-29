@@ -34,7 +34,11 @@
         <activity android:name=".linearsystems.methods.LUPivotGaussActivity" />
         <activity android:name=".linearsystems.methods.DirectLUActivity" />
         <activity android:name=".linearsystems.methods.JacobiActivity" />
-        <activity android:name=".linearsystems.methods.GaussSeidelActivity"></activity>
+        <activity android:name=".linearsystems.methods.GaussSeidelActivity" />
+        <activity
+            android:name=".interpolation.BasedOnESActivity"
+            android:label="@string/title_activity_based_on_es"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
