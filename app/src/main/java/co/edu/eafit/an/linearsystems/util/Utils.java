@@ -368,7 +368,7 @@ public class Utils {
         return x;
     }
 
-    public static double[][] partialPivot(double[][] Ab, int k){
+    public static double[][] partialPivot(double[][] Ab, int k) {
         int n = Ab.length;
         double largest = Math.abs(Ab[k][k]);
         int largestrow = k;
