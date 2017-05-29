@@ -78,6 +78,100 @@ public class Utils {
         return mlu;
     }
 
+    public static LU LUDoolitle(double[][] a){
+        int n = a.length;
+        LU mlu = new LU();
+        mlu.L = constructIdentity(n);
+        mlu.U = constructIdentity(n);
+        double s1, s2, s3;
+        for(int k = 0; k < n; k++){
+            s1 = 0;
+            for (int p = 0; p < k; p++){
+                s1 = s1 + mlu.L[k][p] * mlu.U[p][k];
+            }
+            //mlu.L[k][k] = 1;
+            mlu.U[k][k] = a[k][k] - s1;
+            for(int i = k+1; i < n; i++){
+                s2 = 0;
+                for(int p = 0; p < k; p++){
+                    s2 = s2 + mlu.L[i][p] * mlu.U[p][k];
+                }
+                mlu.L[i][k] = (a[i][k] - s2)/mlu.U[k][k];
+            }
+            for(int j = k+1; j < n; j++){
+                s3 = 0;
+                for(int p = 0; p < k; p++){
+                    s3 = s3 + mlu.L[k][p] * mlu.U[p][j];
+                }
+                mlu.U[k][j] = (a[k][j] - s3)/mlu.L[k][k];
+            }
+        }
+        return mlu;
+    }
+
+    public static LU LUCroult(double[][] a){
+        int n = a.length;
+        LU mlu = new LU();
+        mlu.L = constructIdentity(n);
+        mlu.U = constructIdentity(n);
+        double s1, s2, s3;
+        for(int k = 0; k < n; k++){
+            s1 = 0;
+            for (int p = 0; p < k; p++){
+                s1 = s1 + mlu.L[k][p] * mlu.U[p][k];
+            }
+            //mlu.L[k][k] = 1;
+            mlu.L[k][k] = a[k][k] - s1;
+            for(int i = k+1; i < n; i++){
+                s2 = 0;
+                for(int p = 0; p < k; p++){
+                    s2 = s2 + mlu.L[i][p] * mlu.U[p][k];
+                }
+                mlu.L[i][k] = (a[i][k] - s2)/mlu.U[k][k];
+            }
+            for(int j = k+1; j < n; j++){
+                s3 = 0;
+                for(int p = 0; p < k; p++){
+                    s3 = s3 + mlu.L[k][p] * mlu.U[p][j];
+                }
+                mlu.U[k][j] = (a[k][j] - s3)/mlu.L[k][k];
+            }
+        }
+        return mlu;
+    }
+
+    public static LU LUCholesky(double[][] a){
+        int n = a.length;
+        LU mlu = new LU();
+        mlu.L = constructIdentity(n);
+        mlu.U = constructIdentity(n);
+        double s1, s2, s3;
+        for(int k = 0; k < n; k++){
+            s1 = 0;
+            for (int p = 0; p < k; p++){
+                s1 = s1 + mlu.L[k][p] * mlu.U[p][k];
+            }
+            //mlu.L[k][k] = 1;
+            mlu.L[k][k] = Math.sqrt(a[k][k] - s1);
+            mlu.U[k][k] = mlu.L[k][k];
+            for(int i = k+1; i < n; i++){
+                s2 = 0;
+                for(int p = 0; p < k; p++){
+                    s2 = s2 + mlu.L[i][p] * mlu.U[p][k];
+                }
+                mlu.L[i][k] = (a[i][k] - s2)/mlu.U[k][k];
+            }
+            for(int j = k+1; j < n; j++){
+                s3 = 0;
+                for(int p = 0; p < k; p++){
+                    s3 = s3 + mlu.L[k][p] * mlu.U[p][j];
+                }
+                mlu.U[k][j] = (a[k][j] - s3)/mlu.L[k][k];
+            }
+        }
+        return mlu;
+    }
+
     public static double[][] constructIdentity(int n){
         double a[][] = new double[n][n];
         for (int i = 0; i < n; i++){
