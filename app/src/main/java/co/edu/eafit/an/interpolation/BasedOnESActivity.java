@@ -26,7 +26,7 @@ public class BasedOnESActivity extends AppCompatActivity {
 
     TextView solution, polynomial;
 
-    int i, j, n;
+    int i;
     double points[];
 
     @Override
