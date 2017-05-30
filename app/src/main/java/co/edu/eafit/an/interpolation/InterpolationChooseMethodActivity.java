@@ -38,9 +38,9 @@ public class InterpolationChooseMethodActivity extends AppCompatActivity {
     }
 
     public void nipddMethod(View v) {
-        /* Intent i = new Intent(this, BasedOnESActivity.class);
+        Intent i = new Intent(this, NewtonPolynomialDDActivity.class);
         i.putExtras(bun);
-        startActivity(i); */
+        startActivity(i);
     }
 
     public void lipMethod(View v) {

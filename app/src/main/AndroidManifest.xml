@@ -38,7 +38,8 @@
         <activity android:name=".interpolation.BasedOnESActivity" />
         <activity android:name=".interpolation.InterpolationChooseMethodActivity" />
         <activity android:name=".interpolation.InterpolationLandingActivity" />
-        <activity android:name=".interpolation.NewtonPolynomialActivity"></activity>
+        <activity android:name=".interpolation.NewtonPolynomialActivity" />
+        <activity android:name=".interpolation.NewtonPolynomialDDActivity"></activity>
     </application>
 
 </manifest>
