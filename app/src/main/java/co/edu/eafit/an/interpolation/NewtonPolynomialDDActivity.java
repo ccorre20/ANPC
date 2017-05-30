@@ -43,6 +43,6 @@ public class NewtonPolynomialDDActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < pointsn; i++)
-            System.out.println(Arrays.toString(polynomial[i]));
+            System.out.println(Arrays.toString(polynomial[i])); // Polynomial
     }
 }

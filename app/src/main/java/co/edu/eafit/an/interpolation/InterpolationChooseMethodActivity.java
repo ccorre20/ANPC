@@ -44,9 +44,9 @@ public class InterpolationChooseMethodActivity extends AppCompatActivity {
     }
 
     public void lipMethod(View v) {
-        /* Intent i = new Intent(this, BasedOnESActivity.class);
+        Intent i = new Intent(this, LagrangePolynomialActivity.class);
         i.putExtras(bun);
-        startActivity(i); */
+        startActivity(i);
     }
 
     public void nmMethod(View v) {
