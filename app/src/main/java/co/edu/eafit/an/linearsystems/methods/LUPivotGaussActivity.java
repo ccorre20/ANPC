@@ -24,6 +24,8 @@ public class LUPivotGaussActivity extends AppCompatActivity {
 
     public void runLUPivotGaussActivity(View v){
         Utils.LUMarks mlu = Utils.LUGaussPivotingModified(a);
+        //Following the books recommendation to reorganize the vector instead of implementing matrix
+        //multiplication.
         b = Utils.markAwareX(b,mlu.marks);
         double z[] = Utils.progressiveSubstitution(Utils.augmentMatrix(mlu.L,b));
         double x[] = Utils.regressiveSubstitution(Utils.augmentMatrix(mlu.U,z));

@@ -88,6 +88,7 @@ public class LinearSystemLandingActivity extends AppCompatActivity {
             bi++;
             s = "b"+(bi+1);
             aij_tv.setText(s);
+            aij_et.setText("");
             if(bi == n){
                 Intent i = new Intent(this,LinearSystemChooseMethodActivity.class);
                 Bundle bundle = new Bundle();
