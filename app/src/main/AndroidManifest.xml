@@ -36,6 +36,10 @@
         <activity android:name=".linearsystems.methods.JacobiActivity" />
         <activity android:name=".linearsystems.methods.GaussSeidelActivity" />
         <activity android:name=".interpolation.BasedOnESActivity" />
+        <activity android:name=".diff.DiffLandingActivity" />
+        <activity android:name=".diff.methods.FivePointDiffActivity" />
+        <activity android:name=".diff.methods.ThreePointDiffActivity" />
+        <activity android:name=".diff.methods.TwoPointActivity"></activity>
     </application>
 
 </manifest>
