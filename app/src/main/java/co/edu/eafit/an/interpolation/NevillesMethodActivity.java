@@ -17,5 +17,11 @@ public class NevillesMethodActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         points = (double[]) intent.getExtras().getSerializable("points");
+
+        nm(points);
+    }
+
+    public void nm(double[] points) {
+
     }
 }

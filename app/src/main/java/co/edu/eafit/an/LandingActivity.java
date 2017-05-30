@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import co.edu.eafit.an.diff.DiffLandingActivity;
 import co.edu.eafit.an.interpolation.InterpolationChooseMethodActivity;
 import co.edu.eafit.an.interpolation.InterpolationLandingActivity;
 import co.edu.eafit.an.linearsystems.LinearSystemLandingActivity;
@@ -35,6 +36,7 @@ public class LandingActivity extends AppCompatActivity {
     }
 
     public void Button4(View v){
-
+        Intent i = new Intent(this, DiffLandingActivity.class);
+        startActivity(i);
     }
 }

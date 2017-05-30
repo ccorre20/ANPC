@@ -41,7 +41,11 @@
         <activity android:name=".interpolation.NewtonPolynomialActivity" />
         <activity android:name=".interpolation.NewtonPolynomialDDActivity" />
         <activity android:name=".interpolation.LagrangePolynomialActivity" />
-        <activity android:name=".interpolation.NevillesMethodActivity"></activity>
+        <activity android:name=".interpolation.NevillesMethodActivity" />
+        <activity android:name=".diff.DiffLandingActivity" />
+        <activity android:name=".diff.methods.FivePointDiffActivity" />
+        <activity android:name=".diff.methods.ThreePointDiffActivity" />
+        <activity android:name=".diff.methods.TwoPointActivity" />
     </application>
 
 </manifest>
