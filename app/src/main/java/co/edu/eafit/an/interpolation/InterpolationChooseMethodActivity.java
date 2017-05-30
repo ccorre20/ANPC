@@ -50,8 +50,8 @@ public class InterpolationChooseMethodActivity extends AppCompatActivity {
     }
 
     public void nmMethod(View v) {
-        /* Intent i = new Intent(this, BasedOnESActivity.class);
+        Intent i = new Intent(this, NevillesMethodActivity.class);
         i.putExtras(bun);
-        startActivity(i); */
+        startActivity(i);
     }
 }
