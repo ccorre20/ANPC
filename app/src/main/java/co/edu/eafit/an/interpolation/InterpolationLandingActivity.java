@@ -60,8 +60,8 @@ public class InterpolationLandingActivity extends AppCompatActivity {
         if (i < (n * 2)) {
             points[i] = point;
             i++;
-            if (i % 2 == 0) insertPoints.setText("x" + i / 2);
-            else insertPoints.setText("y" + i / 2);
+            if (i % 2 == 0) insertPoints.setText("Enter x" + i / 2);
+            else insertPoints.setText("Enter y" + i / 2);
         }
 
         if (i == (n * 2)) {
@@ -73,6 +73,6 @@ public class InterpolationLandingActivity extends AppCompatActivity {
             i.putExtras(bundle);
             startActivity(i);
         }
-
+        inputPoints.setText("");
     }
 }

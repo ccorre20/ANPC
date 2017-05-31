@@ -57,7 +57,6 @@ public class BasedOnESActivity extends AppCompatActivity {
             b[i] = points[(i * 2) + 1];
             System.out.print(Arrays.toString(a[i]) + " = ");
             System.out.println(b[i]);
-
         }
 
         double[] sol = solveSystem(a,b);
