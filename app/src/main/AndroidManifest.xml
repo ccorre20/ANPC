@@ -34,7 +34,18 @@
         <activity android:name=".linearsystems.methods.LUPivotGaussActivity" />
         <activity android:name=".linearsystems.methods.DirectLUActivity" />
         <activity android:name=".linearsystems.methods.JacobiActivity" />
-        <activity android:name=".linearsystems.methods.GaussSeidelActivity"></activity>
+        <activity android:name=".linearsystems.methods.GaussSeidelActivity" />
+        <activity android:name=".interpolation.BasedOnESActivity" />
+        <activity android:name=".interpolation.InterpolationChooseMethodActivity" />
+        <activity android:name=".interpolation.InterpolationLandingActivity" />
+        <activity android:name=".interpolation.NewtonPolynomialActivity" />
+        <activity android:name=".interpolation.NewtonPolynomialDDActivity" />
+        <activity android:name=".interpolation.LagrangePolynomialActivity" />
+        <activity android:name=".interpolation.NevillesMethodActivity" />
+        <activity android:name=".diff.DiffLandingActivity" />
+        <activity android:name=".diff.methods.FivePointDiffActivity" />
+        <activity android:name=".diff.methods.ThreePointDiffActivity" />
+        <activity android:name=".diff.methods.TwoPointActivity" />
     </application>
 
 </manifest>

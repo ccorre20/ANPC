@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.edu.eafit.an.linearsystems.methods.DirectLUActivity">
+    tools:context="co.edu.eafit.an.interpolation.InterpolationChooseMethodActivity">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -25,40 +25,41 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp">
 
-        <TextView
-            android:id="@+id/textView7"
+        <Button
+            android:id="@+id/boes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select the method you desire and then click run"
-            android:textAlignment="center" />
+            android:onClick="boesMethod"
+            android:text="Based on Equations' Systems"/>
 
         <Button
-            android:id="@+id/direct_lu_doolitle"
+            android:id="@+id/nip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="doolitle"
-            android:text="Doolitle" />
+            android:onClick="nipMethod"
+            android:text="Newton's Interpolating Polynomial"/>
 
         <Button
-            android:id="@+id/direct_lu_croult"
+            android:id="@+id/nipdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="croult"
-            android:text="Croult" />
+            android:onClick="nipddMethod"
+            android:text="N.I.P. with Divided Differences"/>
 
         <Button
-            android:id="@+id/direct_lu_cholesky"
+            android:id="@+id/lip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="cholesky"
-            android:text="Cholesky" />
+            android:onClick="lipMethod"
+            android:text="Lagrange's Interpolating Polynomial"/>
 
         <Button
-            android:id="@+id/direct_lu_run"
+            android:id="@+id/nm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:onClick="runDirectLU"
-            android:text="RUN" />
+            android:onClick="nmMethod"
+            android:text="Neville's Method"/>
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
