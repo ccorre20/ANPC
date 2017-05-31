@@ -26,7 +26,7 @@ public class LagrangePolynomialActivity extends AppCompatActivity {
             else solve += points[(i * 2) + 1] + "*" + findL(points, i);
         }
 
-        System.out.println(solve); // Polynomial
+        System.out.println("p(x) = " + solve); // Polynomial
     }
 
     public String findL(double[] points, int index) {
@@ -43,7 +43,7 @@ public class LagrangePolynomialActivity extends AppCompatActivity {
                     equation += "(x-" + points[i * 2] + ")";
                 else equation += "(x+" + (-1) * points[i * 2] + ")";
 
-        equation = "p(x) = [(" + equation + ")/" + divider + "]";
+        equation = "[(" + equation + ")/" + divider + "]";
 
         return equation;
     }
