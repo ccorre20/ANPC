@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import co.edu.eafit.an.LandingActivity;
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.interpolation.InterpolationChooseMethodActivity;
 import co.edu.eafit.an.onevar.methods.BisectionActivity;
 import co.edu.eafit.an.onevar.methods.FalseRuleActivity;
 import co.edu.eafit.an.onevar.methods.FixedPointActivity;
@@ -18,7 +20,6 @@ import co.edu.eafit.an.onevar.methods.SecantActivity;
 public class OneVarChooseMethodActivity extends AppCompatActivity {
 
     String f;
-    TextView t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +28,17 @@ public class OneVarChooseMethodActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         f = i.getStringExtra("equation");
-        t = (TextView)findViewById(R.id.tviewchoosemethod);
     }
 
     @Override
     protected void onStart(){
         super.onStart();
-        String s = "f(x) = " + f;
-        t.setText(s);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(OneVarChooseMethodActivity.this, LandingActivity.class);
+        startActivity(i);
     }
 
     public void btnIncSearch(View v){

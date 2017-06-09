@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import java.math.BigDecimal;
 
+import co.edu.eafit.an.LandingActivity;
 import co.edu.eafit.an.R;
 import co.edu.eafit.an.diff.util.Utils;
+import co.edu.eafit.an.linearsystems.LinearSystemChooseMethodActivity;
 
 public class TwoPointActivity extends AppCompatActivity {
 
@@ -38,6 +40,12 @@ public class TwoPointActivity extends AppCompatActivity {
         s = BigDecimal.valueOf(x[1]).setScale(6, BigDecimal.ROUND_HALF_UP).toString() + "...";
         x1_btn = (Button)findViewById(R.id.two_point_diff_x1_btn);
         x1_btn.setText(s);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(TwoPointActivity.this, LandingActivity.class);
+        startActivity(i);
     }
 
     public void x0(View v){

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +17,8 @@ public class InterpolationLandingActivity extends AppCompatActivity {
 
     Button knownPointsButton, nextPoint;
     EditText knownPoints, inputPoints;
-    TextView insertPoints;
+    TextView insertPoints, textView30, labelinter;
+    Space spcmlbtn4, spctxtview3;
 
     int i, j, n;
     double points[];
@@ -31,20 +33,33 @@ public class InterpolationLandingActivity extends AppCompatActivity {
         inputPoints = (EditText) findViewById(R.id.inputPoints);
         nextPoint = (Button) findViewById(R.id.nextPoint);
         insertPoints = (TextView) findViewById(R.id.insertPoints);
+        textView30 = (TextView) findViewById(R.id.textView30);
+        spcmlbtn4 = (Space) findViewById(R.id.spcmlbtn4);
+        spctxtview3 = (Space) findViewById(R.id.spctxtview3);
+        labelinter = (TextView) findViewById(R.id.labelinter);
     }
 
     public void insertPoints(View v) {
+
+
+
+
         n = Integer.parseInt(knownPoints.getText().toString());
 
         if (n > 0) {
-            knownPointsButton.setEnabled(false);
-            knownPointsButton.setVisibility(View.INVISIBLE);
+
+            knownPoints.setVisibility(View.GONE);
             knownPoints.setEnabled(false);
-            knownPoints.setVisibility(View.INVISIBLE);
+            textView30.setVisibility(View.GONE);
+            spcmlbtn4.setVisibility(View.GONE);
+            spctxtview3.setVisibility(View.GONE);
+            knownPointsButton.setVisibility(View.GONE);
+
 
             insertPoints.setVisibility(View.VISIBLE);
             inputPoints.setVisibility(View.VISIBLE);
             nextPoint.setVisibility(View.VISIBLE);
+            labelinter.setVisibility(View.VISIBLE);
 
             i = 0;
 
@@ -60,8 +75,8 @@ public class InterpolationLandingActivity extends AppCompatActivity {
         if (i < (n * 2)) {
             points[i] = point;
             i++;
-            if (i % 2 == 0) insertPoints.setText("Enter x" + i / 2);
-            else insertPoints.setText("Enter y" + i / 2);
+            if (i % 2 == 0) insertPoints.setText("X" + (i / 2) + " = ");
+            else insertPoints.setText("Y" + (i / 2) + " = ");
         }
 
         if (i == (n * 2)) {

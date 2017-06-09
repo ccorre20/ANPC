@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +16,8 @@ public class LinearSystemLandingActivity extends AppCompatActivity {
 
     Button size_btn, back_btn, insert_btn;
     EditText size_et, aij_et;
-    TextView aijhelp_tv, aij_tv;
+    TextView aijhelp_tv, aij_tv, textView2;
+    Space spc, spctxtview;
 
     double a[][], b[];
     int i, j, n, bi;
@@ -31,11 +33,22 @@ public class LinearSystemLandingActivity extends AppCompatActivity {
         aij_et = (EditText)findViewById(R.id.matrix_landing_realinputet);
         aijhelp_tv = (TextView)findViewById(R.id.matrix_landing_aijhelptv);
         aij_tv = (TextView)findViewById(R.id.matrix_landing_aijtv);
+        spc = (Space) findViewById(R.id.spcmlbtn);
+        spctxtview = (Space) findViewById(R.id.spctxtview);
+        textView2 = (TextView) findViewById(R.id.textView2);
     }
 
-    public void mSize(View v){
+    public void mSize(View v) {
+
         n = Integer.parseInt(size_et.getText().toString());
         if(n > 0){
+
+            size_btn.setVisibility(View.GONE);
+            spc.setVisibility(View.GONE);
+            size_et.setVisibility(View.GONE);
+            spctxtview.setVisibility(View.GONE);
+            textView2.setVisibility(View.GONE);
+
             //a[i][j] i=Rows j=Columns
             //It's auto filled with 0.
             a = new double[n][n];
@@ -47,8 +60,7 @@ public class LinearSystemLandingActivity extends AppCompatActivity {
             aij_et.setVisibility(View.VISIBLE);
             back_btn.setVisibility(View.VISIBLE);
             insert_btn.setVisibility(View.VISIBLE);
-            aij_tv.setText("a11=");
-            aij_et.setHint("n");
+            aij_tv.setText("a[1][1] =");
             i = 0;
             j = 0;
         } else {
@@ -73,20 +85,20 @@ public class LinearSystemLandingActivity extends AppCompatActivity {
             } else {
                 j++;
             }
-            s = "a"+(i+1)+(j+1);
+            s = "a["+(i+1)+"]["+(j+1)+"] =";
             aij_tv.setText(s);
             aij_et.setText("");
             if(i == n){
                 back_btn.setEnabled(false);
-                aijhelp_tv.setText("Please input the RHS vector of Ax=B");
-                aij_tv.setText("b1");
+                aijhelp_tv.setText("input the RHS vector of Ax = B");
+                aij_tv.setText("b[1] =");
                 bi = 0;
             }
         } else {
             //Once it gets here it now entering b[].
             b[bi] = x;
             bi++;
-            s = "b"+(bi+1);
+            s = "b["+(bi+1)+"] =";
             aij_tv.setText(s);
             aij_et.setText("");
             if(bi == n){

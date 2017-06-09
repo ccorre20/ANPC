@@ -1,11 +1,14 @@
 package co.edu.eafit.an.linearsystems;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import co.edu.eafit.an.LandingActivity;
 import co.edu.eafit.an.R;
 import co.edu.eafit.an.linearsystems.methods.DirectLUActivity;
 import co.edu.eafit.an.linearsystems.methods.GaussActivity;
@@ -21,6 +24,8 @@ public class LinearSystemChooseMethodActivity extends AppCompatActivity {
     double a[][], b[];
     Bundle bun;
 
+    AlertDialog alertDialog1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,51 +38,150 @@ public class LinearSystemChooseMethodActivity extends AppCompatActivity {
         bun.putSerializable("b", b);
     }
 
-    public void gauss(View v){
-        Intent i = new Intent(this, GaussActivity.class);
-        i.putExtras(bun);
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(LinearSystemChooseMethodActivity.this, LandingActivity.class);
         startActivity(i);
     }
 
-    public void partialPivotGauss(View v){
-        Intent i = new Intent(this, PartialPivotGaussActivity.class);
-        i.putExtras(bun);
-        startActivity(i);
+    public void gaussianElimination(View v) {
+
+        CharSequence[] values = {"SIMPLE ELIMINATION","PARTIAL PIVOTING","TOTAL PIVOTING"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(LinearSystemChooseMethodActivity.this);
+        builder.setTitle("GAUSSIAN ELIMINATION");
+
+        builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int item) {
+
+                Intent i;
+
+                switch(item) {
+                    case 0:
+                        i = new Intent(LinearSystemChooseMethodActivity.this, GaussActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        i = new Intent(LinearSystemChooseMethodActivity.this, PartialPivotGaussActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                    case 2:
+                        i = new Intent(LinearSystemChooseMethodActivity.this, TotalPivotGaussActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                }
+                alertDialog1.dismiss();
+            }
+        });
+
+        alertDialog1 = builder.create();
+        alertDialog1.show();
     }
 
-    public void totalPivotGauss(View v){
-        Intent i = new Intent(this, TotalPivotGaussActivity.class);
-        i.putExtras(bun);
-        startActivity(i);
+    public void luFactorization(View v) {
+
+        CharSequence[] values = {"SIMPLE ELIMINATION","PARTIAL PIVOTING"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(LinearSystemChooseMethodActivity.this);
+        builder.setTitle("LU FACTORIZATION");
+
+        builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int item) {
+
+                Intent i;
+
+                switch(item) {
+                    case 0:
+                        i = new Intent(LinearSystemChooseMethodActivity.this, LUGaussActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        i = new Intent(LinearSystemChooseMethodActivity.this, LUPivotGaussActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                }
+                alertDialog1.dismiss();
+            }
+        });
+
+        alertDialog1 = builder.create();
+        alertDialog1.show();
     }
 
-    public void luGauss(View v){
-        Intent i = new Intent(this, LUGaussActivity.class);
-        i.putExtras(bun);
-        startActivity(i);
+    public void directFactorization(View v) {
+
+        CharSequence[] values = {"DOOLITTLE","CHOLESKY","CROUT"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(LinearSystemChooseMethodActivity.this);
+        builder.setTitle("DIRECT FACTORIZATION");
+
+        builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int item) {
+
+                Intent i;
+
+                switch(item) {
+                    case 0:
+                        bun.putSerializable("selection", 0);
+                        i = new Intent(LinearSystemChooseMethodActivity.this, DirectLUActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        bun.putSerializable("selection", 1);
+                        i = new Intent(LinearSystemChooseMethodActivity.this, DirectLUActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                    case 2:
+                        bun.putSerializable("selection", 2);
+                        i = new Intent(LinearSystemChooseMethodActivity.this, DirectLUActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                }
+                alertDialog1.dismiss();
+            }
+        });
+
+        alertDialog1 = builder.create();
+        alertDialog1.show();
     }
 
-    public void luPivotGauss(View v){
-        Intent i = new Intent(this, LUPivotGaussActivity.class);
-        i.putExtras(bun);
-        startActivity(i);
-    }
+    public void iterativeMethods(View v) {
 
-    public void directLu(View v){
-        Intent i = new Intent(this, DirectLUActivity.class);
-        i.putExtras(bun);
-        startActivity(i);
-    }
+        CharSequence[] values = {"JACOBI METHOD","GAUSS SEIDEL"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(LinearSystemChooseMethodActivity.this);
+        builder.setTitle("ITERATIVE METHODS");
 
-    public void jacobi(View v){
-        Intent i = new Intent(this, JacobiActivity.class);
-        i.putExtras(bun);
-        startActivity(i);
-    }
+        builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
 
-    public void gaussSeidel(View v){
-        Intent i = new Intent(this, GaussSeidelActivity.class);
-        i.putExtras(bun);
-        startActivity(i);
+            public void onClick(DialogInterface dialog, int item) {
+
+                Intent i;
+
+                switch(item) {
+                    case 0:
+                        i = new Intent(LinearSystemChooseMethodActivity.this, JacobiActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        i = new Intent(LinearSystemChooseMethodActivity.this, GaussSeidelActivity.class);
+                        i.putExtras(bun);
+                        startActivity(i);
+                        break;
+                }
+                alertDialog1.dismiss();
+            }
+        });
+
+        alertDialog1 = builder.create();
+        alertDialog1.show();
     }
 }

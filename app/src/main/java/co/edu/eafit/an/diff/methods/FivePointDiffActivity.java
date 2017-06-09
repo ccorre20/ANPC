@@ -12,8 +12,10 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+import co.edu.eafit.an.LandingActivity;
 import co.edu.eafit.an.R;
 import co.edu.eafit.an.diff.util.Utils;
+import co.edu.eafit.an.linearsystems.LinearSystemChooseMethodActivity;
 
 public class FivePointDiffActivity extends AppCompatActivity {
     
@@ -48,6 +50,12 @@ public class FivePointDiffActivity extends AppCompatActivity {
         s = BigDecimal.valueOf(x[4]).setScale(6, BigDecimal.ROUND_HALF_UP).toString() + "...";
         x4_btn = (Button)findViewById(R.id.five_point_diff_x4_btn);
         x4_btn.setText(s);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(FivePointDiffActivity.this, LandingActivity.class);
+        startActivity(i);
     }
 
     public void x0(View v){

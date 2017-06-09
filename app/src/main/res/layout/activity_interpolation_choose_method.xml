@@ -7,58 +7,110 @@
     tools:context="co.edu.eafit.an.interpolation.InterpolationChooseMethodActivity">
 
     <LinearLayout
+
+        android:weightSum="1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:gravity="center_vertical"
+
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="8dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:text="Interpolation Methods"
+            android:textAlignment="center"
+            android:textSize="36dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:text="Which method do you want to run?"
+            android:textAlignment="center"
+            android:textSize="16dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
 
         <Button
             android:id="@+id/boes"
+            android:background="@drawable/button_shape"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="boesMethod"
-            android:text="Based on Equations' Systems"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/textColorButton"
+            android:text="Based on Equations' Systems" />
 
         <Button
             android:id="@+id/nip"
+            android:onClick="nipMethod"
+            android:text="Newton's Interpolating Polynomial"
+            android:background="@drawable/button_shape"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="nipMethod"
-            android:text="Newton's Interpolating Polynomial"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/textColorButton"/>
 
         <Button
             android:id="@+id/nipdd"
+            android:onClick="nipddMethod"
+            android:text="N.I.P. with Divided Differences"
+            android:background="@drawable/button_shape"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="nipddMethod"
-            android:text="N.I.P. with Divided Differences"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/textColorButton"/>
 
         <Button
             android:id="@+id/lip"
+            android:onClick="lipMethod"
+            android:text="Lagrange's Interpolating Polynomial"
+            android:background="@drawable/button_shape"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="lipMethod"
-            android:text="Lagrange's Interpolating Polynomial"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/textColorButton" />
 
         <Button
             android:id="@+id/nm"
+            android:onClick="nmMethod"
+            android:text="Neville's Method"
+            android:background="@drawable/button_shape"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="nmMethod"
-            android:text="Neville's Method"/>
+            android:textColor="@color/textColorButton" />
 
     </LinearLayout>
 

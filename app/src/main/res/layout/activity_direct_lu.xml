@@ -33,31 +33,9 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/direct_lu_doolitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="doolitle"
-            android:text="Doolitle" />
-
-        <Button
-            android:id="@+id/direct_lu_croult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="croult"
-            android:text="Croult" />
-
-        <Button
-            android:id="@+id/direct_lu_cholesky"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="cholesky"
-            android:text="Cholesky" />
-
-        <Button
             android:id="@+id/direct_lu_run"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
             android:onClick="runDirectLU"
             android:text="RUN" />
     </LinearLayout>

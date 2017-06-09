@@ -9,15 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LandingActivity">
+
+        <activity android:name=".LandingActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".onevar.OneVarLandingActivity" />
-        <activity android:name=".onevar.OneVarChooseMethodActivity" />
+
+
+        <activity android:name=".onevar.OneVarLandingActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".onevar.OneVarChooseMethodActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".onevar.methods.IncrementalSearchActivity" />
         <activity android:name=".onevar.methods.BisectionActivity" />
         <activity android:name=".onevar.methods.FalseRuleActivity" />
@@ -25,8 +32,13 @@
         <activity android:name=".onevar.methods.NewtonActivity" />
         <activity android:name=".onevar.methods.SecantActivity" />
         <activity android:name=".onevar.methods.MultipleRootActivity" />
-        <activity android:name=".linearsystems.LinearSystemLandingActivity" />
-        <activity android:name=".linearsystems.LinearSystemChooseMethodActivity" />
+
+
+        <activity android:name=".linearsystems.LinearSystemLandingActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".linearsystems.LinearSystemChooseMethodActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".linearsystems.methods.GaussActivity" />
         <activity android:name=".linearsystems.methods.PartialPivotGaussActivity" />
         <activity android:name=".linearsystems.methods.TotalPivotGaussActivity" />
@@ -35,17 +47,32 @@
         <activity android:name=".linearsystems.methods.DirectLUActivity" />
         <activity android:name=".linearsystems.methods.JacobiActivity" />
         <activity android:name=".linearsystems.methods.GaussSeidelActivity" />
+
+
         <activity android:name=".interpolation.BasedOnESActivity" />
-        <activity android:name=".interpolation.InterpolationChooseMethodActivity" />
-        <activity android:name=".interpolation.InterpolationLandingActivity" />
+        <activity android:name=".interpolation.InterpolationChooseMethodActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".interpolation.InterpolationLandingActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".interpolation.NewtonPolynomialActivity" />
         <activity android:name=".interpolation.NewtonPolynomialDDActivity" />
         <activity android:name=".interpolation.LagrangePolynomialActivity" />
         <activity android:name=".interpolation.NevillesMethodActivity" />
-        <activity android:name=".diff.DiffLandingActivity" />
-        <activity android:name=".diff.methods.FivePointDiffActivity" />
-        <activity android:name=".diff.methods.ThreePointDiffActivity" />
-        <activity android:name=".diff.methods.TwoPointActivity" />
+
+
+        <activity android:name=".diff.DiffLandingActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".diff.methods.FivePointDiffActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".diff.methods.ThreePointDiffActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity android:name=".diff.methods.TwoPointActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
     </application>
 
 </manifest>
