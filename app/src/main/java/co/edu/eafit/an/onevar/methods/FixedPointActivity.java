@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Interpolator;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,8 +17,8 @@ import co.edu.eafit.an.R;
 
 public class FixedPointActivity extends AppCompatActivity {
 
-    EditText xa_et, gx_et, tol_et, niter_et, results;
-    TextView func;
+    EditText xa_et, gx_et, tol_et, niter_et;
+    TextView func,results;
     Expression expr, gexpr;
 
     @Override
@@ -29,7 +30,7 @@ public class FixedPointActivity extends AppCompatActivity {
         tol_et  = (EditText)findViewById(R.id.fixed_point_tolerance);
         niter_et = (EditText)findViewById(R.id.fixed_point_niter);
         func = (TextView)findViewById(R.id.fixed_point_func);
-        results = (EditText)findViewById(R.id.fixed_point_result);
+        results = (TextView) findViewById(R.id.fixed_point_result);
     }
 
     @Override
@@ -42,6 +43,12 @@ public class FixedPointActivity extends AppCompatActivity {
     }
 
     public void runFixedPoint(View v){
+
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+        results.setVisibility(View.VISIBLE);
+
         String temp;
         BigDecimal xa = BigDecimal.valueOf(Double.parseDouble(xa_et.getText().toString()));
         BigDecimal tol = BigDecimal.valueOf(Double.parseDouble(tol_et.getText().toString()));
@@ -51,7 +58,7 @@ public class FixedPointActivity extends AppCompatActivity {
         //TODO: We have to add checks to this function, otherwise this might crash the app.
         gexpr = new Expression(gx_et.getText().toString());
         if (niter < 1) {
-            results.setHint("Bad number of iterations");
+            results.setText("Wrong number of iterations");
             return;
         }
         //Method Begins
@@ -69,7 +76,7 @@ public class FixedPointActivity extends AppCompatActivity {
             temp = "x = " + xa.toString() + " is a root";
             results.setText(temp);
         }else if(error.compareTo(tol) < 0) {
-            temp = "x = " + xa.toString() + " is an approximate root, err=" + error.toString();
+            temp = "x = " + xa.toString() + " is an approximated root\nwith E = " + error.toString();
             results.setText(temp);
         }else{
             temp = "the method failed after" + niter + " iterations";

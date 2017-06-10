@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,8 +16,8 @@ import co.edu.eafit.an.R;
 
 public class SecantActivity extends AppCompatActivity {
 
-    EditText x0_et, x1_et, tol_et, niter_et, results;
-    TextView func;
+    EditText x0_et, x1_et, tol_et, niter_et;
+    TextView func, results;
     Expression expr;
 
     @Override
@@ -28,7 +29,7 @@ public class SecantActivity extends AppCompatActivity {
         tol_et  = (EditText)findViewById(R.id.secant_tolerance);
         niter_et = (EditText)findViewById(R.id.secant_niter);
         func = (TextView)findViewById(R.id.secant_func);
-        results = (EditText)findViewById(R.id.secant_result);
+        results = (TextView)findViewById(R.id.secant_result);
     }
 
     @Override
@@ -41,6 +42,12 @@ public class SecantActivity extends AppCompatActivity {
     }
 
     public void runSecant(View v){
+
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+        results.setVisibility(View.VISIBLE);
+
         String temp;
         BigDecimal x0 = BigDecimal.valueOf(Double.parseDouble(x0_et.getText().toString()));
         BigDecimal x1 = BigDecimal.valueOf(Double.parseDouble(x1_et.getText().toString()));
@@ -48,7 +55,7 @@ public class SecantActivity extends AppCompatActivity {
         BigDecimal x2;
         int niter = Integer.parseInt(niter_et.getText().toString());
         if (niter < 1) {
-            results.setHint("Bad number of iterations");
+            results.setText("Wrong number of iterations");
             return;
         }
         //Method Begins
@@ -76,13 +83,13 @@ public class SecantActivity extends AppCompatActivity {
                 temp = "x = " + x1.toString() + " is a root";
                 results.setText(temp);
             } else if (error.compareTo(tol) < 0) {
-                temp = "x = " + x1.toString() + " is an approximate root, err=" + error.toString();
+                temp = "x = " + x1.toString() + " is an approximated root\nwith E = " + error.toString();
                 results.setText(temp);
             } else if(den.compareTo(BigDecimal.ZERO) == 0){
                 temp = "There are possibly multiple roots";
                 results.setText(temp);
             } else {
-                temp = "the method failed after" + niter + " iterations";
+                temp = "the method failed after " + niter + " iterations";
                 results.setText(temp);
             }
         }

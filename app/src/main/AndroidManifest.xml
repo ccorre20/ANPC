@@ -25,13 +25,27 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".onevar.OneVarChooseMethodActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".onevar.methods.IncrementalSearchActivity" />
-        <activity android:name=".onevar.methods.BisectionActivity" />
-        <activity android:name=".onevar.methods.FalseRuleActivity" />
-        <activity android:name=".onevar.methods.FixedPointActivity" />
-        <activity android:name=".onevar.methods.NewtonActivity" />
-        <activity android:name=".onevar.methods.SecantActivity" />
-        <activity android:name=".onevar.methods.MultipleRootActivity" />
+        <activity android:name=".onevar.methods.IncrementalSearchActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"  />
+        <activity android:name=".onevar.methods.BisectionActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".onevar.methods.FalseRuleActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".onevar.methods.FixedPointActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".onevar.methods.NewtonActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".onevar.methods.SecantActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".onevar.methods.MultipleRootActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
 
         <activity android:name=".linearsystems.LinearSystemLandingActivity"
