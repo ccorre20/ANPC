@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.udojava.evalex.Expression;
 
@@ -25,29 +26,49 @@ public class OneVarLandingActivity extends AppCompatActivity {
     }
 
     public void parseAndVerify(View v){
-        try {
-            Expression expr = new Expression(func.getText().toString());
-            BigDecimal d = expr.with("x", BigDecimal.ZERO).eval();
-            Log.d("TEST",expr.toString());
-            Log.d("Testing expression", d.toString());
-            BigDecimal e = expr.with("x", BigDecimal.ONE).eval();
-            Log.d("TEST",expr.toString());
-            Log.d("Testing expression", e.toString());
+        Expression expr = new Expression(func.getText().toString());
+        /*
+        //BigDecimal d = expr.with("x", BigDecimal.ZERO).eval();
+        //Extremely rudimentary testing.
+        Log.d("TEST",expr.toString());
+        //Log.d("Testing expression", d.toString());
+        BigDecimal e = expr.with("x", BigDecimal.ONE).eval();
+        //Extremely rudimentary testing.
+        Log.d("TEST",expr.toString());
+        Log.d("Testing expression", e.toString());
+        */
+        BigDecimal x0 = BigDecimal.valueOf(-10d), x1 = null;
+        BigDecimal delta = BigDecimal.valueOf(0.05);
+        for (int i = 0; i < 1000; i++){
+            double x = x0.add(delta.multiply(BigDecimal.valueOf((double)i))).doubleValue();
+            try{
+                expr.with("x", BigDecimal.valueOf(x)).eval();
+                x1 = BigDecimal.valueOf(x);
+                System.out.println("Okay" + x);
+                break;
+            } catch (Exception e){
+                //
+            }
+            System.out.println(x);
+        }
+        if (x1 != null) {
             //If it gets here it means the expression can be successfully evaluated.
             Intent i = new Intent(this, OneVarChooseMethodActivity.class);
             i.putExtra("equation", func.getText().toString());
             startActivity(i);
-        }catch (Expression.ExpressionException e){
-            e.printStackTrace();
+        } else {
+            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void graph(View v){
+        /*
         try {
             Expression expr = new Expression(func.getText().toString());
-            BigDecimal d = expr.with("x", BigDecimal.ZERO).eval();
+            //BigDecimal d = expr.with("x", BigDecimal.ZERO).eval();
             Log.d("TEST",expr.toString());
-            Log.d("Testing expression", d.toString());
+            //Log.d("Testing expression", d.toString());
+            //Extremely rudimentary testing.
             BigDecimal e = expr.with("x", BigDecimal.ONE).eval();
             Log.d("TEST",expr.toString());
             Log.d("Testing expression", e.toString());
@@ -57,6 +78,31 @@ public class OneVarLandingActivity extends AppCompatActivity {
             startActivity(i);
         }catch (Expression.ExpressionException e){
             e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
+        */
+        Expression expr = new Expression(func.getText().toString());
+        BigDecimal x0 = BigDecimal.valueOf(-10d), x1 = null;
+        BigDecimal delta = BigDecimal.valueOf(0.05);
+        for (int i = 0; i < 1000; i++){
+            double x = x0.add(delta.multiply(BigDecimal.valueOf((double)i))).doubleValue();
+            try{
+                expr.with("x", BigDecimal.valueOf(x)).eval();
+                x1 = BigDecimal.valueOf(x);
+                System.out.println("Okay" + x);
+                break;
+            } catch (Exception e){
+                //
+            }
+            System.out.println(x);
+        }
+        if (x1 != null) {
+            //If it gets here it means the expression can be successfully evaluated.
+            Intent i = new Intent(this, GraphActivity.class);
+            i.putExtra("equation", func.getText().toString());
+            startActivity(i);
+        } else {
+            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
         }
     }
 }
