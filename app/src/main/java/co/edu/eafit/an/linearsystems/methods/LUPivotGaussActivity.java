@@ -21,9 +21,11 @@ public class LUPivotGaussActivity extends AppCompatActivity {
         Intent intent = getIntent();
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
+
+        runLUPivotGaussActivity();
     }
 
-    public void runLUPivotGaussActivity(View v){
+    public void runLUPivotGaussActivity(){
         Utils.LUMarks mlu = Utils.LUGaussPivotingModified(a);
         //Following the books recommendation to reorganize the vector instead of implementing matrix
         //multiplication.

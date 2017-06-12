@@ -21,9 +21,11 @@ public class LUGaussActivity extends AppCompatActivity {
         Intent intent = getIntent();
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
+
+        runLUGauss();
     }
 
-    public void runLUGauss(View v){
+    public void runLUGauss() {
         Utils.LU mlu = Utils.LUGauss(a);
         double z[] = Utils.progressiveSubstitution(Utils.augmentMatrix(mlu.L,b));
         double x[] = Utils.regressiveSubstitution(Utils.augmentMatrix(mlu.U,z));

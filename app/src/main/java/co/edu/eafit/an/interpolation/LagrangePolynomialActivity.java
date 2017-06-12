@@ -3,6 +3,7 @@ package co.edu.eafit.an.interpolation;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import co.edu.eafit.an.R;
 
@@ -10,10 +11,14 @@ public class LagrangePolynomialActivity extends AppCompatActivity {
 
     double[] points;
 
+    TextView polynomial3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lagrange_polynomial);
+
+        polynomial3 = (TextView) findViewById(R.id.polynomial3);
 
         Intent intent = getIntent();
         points = (double[]) intent.getExtras().getSerializable("points");
@@ -26,7 +31,9 @@ public class LagrangePolynomialActivity extends AppCompatActivity {
             else solve += points[(i * 2) + 1] + "*" + findL(points, i);
         }
 
-        System.out.println("p(x) = " + solve); // Polynomial
+        // System.out.println("p(x) = " + solve); // Polynomial
+
+        polynomial3.setText("p(x) = " + solve);
     }
 
     public String findL(double[] points, int index) {

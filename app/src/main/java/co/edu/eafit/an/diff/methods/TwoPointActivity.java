@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.math.BigDecimal;
 
 import co.edu.eafit.an.LandingActivity;
@@ -19,8 +21,7 @@ import co.edu.eafit.an.linearsystems.LinearSystemChooseMethodActivity;
 public class TwoPointActivity extends AppCompatActivity {
 
     Button x0_btn, x1_btn;
-    EditText res_et;
-    TextView res_tv;
+    TextView res_et;
 
     double y[], x[], h, res;
 
@@ -32,8 +33,7 @@ public class TwoPointActivity extends AppCompatActivity {
         x = (double[])intent.getExtras().getSerializable("x");
         y = (double[])intent.getExtras().getSerializable("y");
         h = Math.abs(intent.getExtras().getDouble("h"));
-        res_et = (EditText)findViewById(R.id.two_point_diff_res_et);
-        res_tv = (TextView)findViewById(R.id.two_point_diff_res_tv);
+        res_et = (TextView)findViewById(R.id.two_point_diff_res_et);
         String s = BigDecimal.valueOf(x[0]).setScale(6, BigDecimal.ROUND_HALF_UP).toString() + "...";
         x0_btn = (Button)findViewById(R.id.two_point_diff_x0_btn);
         x0_btn.setText(s);
@@ -51,13 +51,16 @@ public class TwoPointActivity extends AppCompatActivity {
     public void x0(View v){
         res = Utils.twoPointDiffForward(h,y);
         Log.d("RES", Double.toString(res));
-        res_et.setText(Double.toString(res));
+        res_et.setText("f'(x) = " + Double.toString(res));
 
+        res_et.setVisibility(View.VISIBLE);
     }
 
     public void x1(View v){
         res = Utils.twoPointDiffForward(-h,y);
         Log.d("RES", Double.toString(res));
-        res_et.setText(Double.toString(res));
+        res_et.setText("f'(x) = " + Double.toString(res));
+
+        res_et.setVisibility(View.VISIBLE);
     }
 }

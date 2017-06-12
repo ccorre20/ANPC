@@ -24,7 +24,7 @@ import co.edu.eafit.an.linearsystems.util.Utils;
 public class BasedOnESActivity extends AppCompatActivity {
 
 
-    TextView solution, polynomial;
+    TextView polynomial;
 
     int i;
     double points[];
@@ -37,7 +37,6 @@ public class BasedOnESActivity extends AppCompatActivity {
         Intent intent = getIntent();
         points = (double[]) intent.getExtras().getSerializable("points");
 
-        solution = (TextView) findViewById(R.id.solution);
         polynomial = (TextView) findViewById(R.id.polynomial);
 
         calculatePolynomial(points);
@@ -61,7 +60,6 @@ public class BasedOnESActivity extends AppCompatActivity {
 
         double[] sol = solveSystem(a,b);
 
-        solution.setVisibility(View.VISIBLE);
         polynomial.setVisibility(View.VISIBLE);
 
         String pol = "p(x) = ";

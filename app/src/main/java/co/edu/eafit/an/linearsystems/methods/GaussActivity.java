@@ -20,9 +20,11 @@ public class GaussActivity extends AppCompatActivity {
         Intent intent = getIntent();
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
+
+        runGauss();
     }
 
-    public void runGauss(View v){
+    public void runGauss() {
         int n = a.length;
         double mult;
         //Method Begins
@@ -40,6 +42,4 @@ public class GaussActivity extends AppCompatActivity {
         i.putExtra("x",x);
         startActivity(i);
     }
-
-
 }
