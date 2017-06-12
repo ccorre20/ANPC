@@ -7,60 +7,91 @@
     tools:context="co.edu.eafit.an.onevar.OneVarLandingActivity">
 
     <LinearLayout
+
+        android:weightSum="1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:weightSum="1"
+        android:gravity="center_vertical"
+
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="8dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        app:layout_constraintTop_toTopOf="parent" >
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
             android:text="One Variable Equations"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="36dp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.07" />
+            android:layout_weight="0.1" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Please input the equation that you'll be using"
+            android:textAllCaps="true"
+            android:text="Please input the equation"
             android:textAlignment="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05" />
 
         <EditText
             android:id="@+id/et1onevar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Input the RHS of f(x)="
-            android:inputType="textPersonName" />
+            android:textAllCaps="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textAlignment="center"
+            android:paddingBottom="20dp"
+            android:hint="INPUT THE RHS OF F(X) ="
+            android:inputType="textNoSuggestions" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05" />
 
         <Button
             android:id="@+id/button"
+            android:background="@drawable/button_shape"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColorButton"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:onClick="parseAndVerify"
             android:text="Parse and Verify" />
+
+        <Button
+            android:id="@+id/bGraph"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_shape"
+            android:onClick="graph"
+            android:text="Graph"
+            android:textColor="@color/textColorButton" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

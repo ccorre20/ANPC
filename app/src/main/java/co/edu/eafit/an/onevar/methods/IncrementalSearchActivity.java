@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,8 +16,8 @@ import co.edu.eafit.an.R;
 
 public class IncrementalSearchActivity extends AppCompatActivity {
 
-    EditText x0_et, delta_et, niter_et, results;
-    TextView func;
+    EditText x0_et, delta_et, niter_et;
+    TextView func, results, textView100;
     Expression expr;
 
 
@@ -27,7 +28,7 @@ public class IncrementalSearchActivity extends AppCompatActivity {
         x0_et = (EditText)findViewById(R.id.incsearch_x0);
         delta_et = (EditText)findViewById(R.id.incsearch_delta);
         niter_et = (EditText)findViewById(R.id.incsearch_niter);
-        results = (EditText)findViewById(R.id.incsearch_results);
+        results = (TextView)findViewById(R.id.incsearch_results);
         func = (TextView)findViewById(R.id.incsearch_func);
     }
 
@@ -46,9 +47,19 @@ public class IncrementalSearchActivity extends AppCompatActivity {
         BigDecimal delta = BigDecimal.valueOf(Double.parseDouble(delta_et.getText().toString()));
         int niter = Integer.parseInt(niter_et.getText().toString());
         if(niter < 1) {
-            results.setHint("Bad number of iterations");
+            results.setText("Wrong number of iterations");
             return;
         }
+
+        results.setVisibility(View.VISIBLE);
+
+        x0_et.setSelected(false);
+        delta_et.setSelected(false);
+        niter_et.setSelected(false);
+
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
         //Method begins
         try {
             //y0 = f(x0)
@@ -77,7 +88,7 @@ public class IncrementalSearchActivity extends AppCompatActivity {
                     temp = "x = " + x1.toString() + " is a root";
                     results.setText(temp);
                 }else if(y0.multiply(y1).compareTo(BigDecimal.ZERO) < 0){
-                    temp = "There is a root between x0=" + x0.toString() + " and x1=" + x1.toString();
+                    temp = "There is a root between x0 = " + x0.toString() + " and x1 = " + x1.toString();
                     results.setText(temp);
                 }else{
                     temp = "The method failed after " + niter + " iterations";

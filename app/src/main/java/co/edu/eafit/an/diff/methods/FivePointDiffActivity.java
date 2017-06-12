@@ -7,19 +7,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Space;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+import co.edu.eafit.an.LandingActivity;
 import co.edu.eafit.an.R;
 import co.edu.eafit.an.diff.util.Utils;
+import co.edu.eafit.an.linearsystems.LinearSystemChooseMethodActivity;
 
 public class FivePointDiffActivity extends AppCompatActivity {
     
     Button x0_btn, x1_btn, x2_btn, x3_btn, x4_btn;
-    EditText res_et;
-    TextView res_tv;
+    TextView res_et, textView8;
 
     double y[], x[], h, res;
     
@@ -31,8 +33,8 @@ public class FivePointDiffActivity extends AppCompatActivity {
         x = (double[])intent.getExtras().getSerializable("x");
         y = (double[])intent.getExtras().getSerializable("y");
         h = Math.abs(intent.getExtras().getDouble("h"));
-        res_et = (EditText)findViewById(R.id.five_point_diff_res_et);
-        res_tv = (TextView)findViewById(R.id.five_point_diff_res_tv);
+
+        res_et = (TextView)findViewById(R.id.five_point_diff_res_et);
         String s = BigDecimal.valueOf(x[0]).setScale(6, BigDecimal.ROUND_HALF_UP).toString() + "...";
         x0_btn = (Button)findViewById(R.id.five_point_diff_x0_btn);
         x0_btn.setText(s);
@@ -48,35 +50,58 @@ public class FivePointDiffActivity extends AppCompatActivity {
         s = BigDecimal.valueOf(x[4]).setScale(6, BigDecimal.ROUND_HALF_UP).toString() + "...";
         x4_btn = (Button)findViewById(R.id.five_point_diff_x4_btn);
         x4_btn.setText(s);
+
+        textView8 = (TextView) findViewById(R.id.textView8);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(FivePointDiffActivity.this, LandingActivity.class);
+        startActivity(i);
     }
 
     public void x0(View v){
         res = Utils.fivePointDiffForward(h,y);
         Log.d("RES", Double.toString(res));
-        res_et.setText(Double.toString(res));
+        res_et.setText("f'(x) = " + Double.toString(res));
+
+        textView8.setVisibility(View.VISIBLE);
+        res_et.setVisibility(View.VISIBLE);
     }
 
     public void x1(View v){
         res = Utils.threePointDiffForward(h, Arrays.copyOfRange(y,1,4));
         Log.d("RES", Double.toString(res));
-        res_et.setText(Double.toString(res));
+        res_et.setText("f'(x) = " + Double.toString(res));
+
+        textView8.setVisibility(View.VISIBLE);
+        res_et.setVisibility(View.VISIBLE);
     }
 
     public void x2(View v){
         res = Utils.fivePointDiffCenter(h, y);
         Log.d("RES", Double.toString(res));
-        res_et.setText(Double.toString(res));
+        res_et.setText("f'(x) = " + Double.toString(res));
+
+        textView8.setVisibility(View.VISIBLE);
+        res_et.setVisibility(View.VISIBLE);
     }
 
     public void x3(View v){
         res = Utils.threePointDiffForward(-h,Arrays.copyOfRange(y,1,4));
         Log.d("RES", Double.toString(res));
-        res_et.setText(Double.toString(res));
+        res_et.setText("f'(x) = " + Double.toString(res));
+
+        textView8.setVisibility(View.VISIBLE);
+        res_et.setVisibility(View.VISIBLE);
     }
 
     public void x4(View v){
         res = Utils.fivePointDiffForward(-h,y);
         Log.d("RES", Double.toString(res));
-        res_et.setText(Double.toString(res));
+        res_et.setText("f'(x) = " + Double.toString(res));
+
+        textView8.setVisibility(View.VISIBLE);
+        res_et.setVisibility(View.VISIBLE);
     }
 }

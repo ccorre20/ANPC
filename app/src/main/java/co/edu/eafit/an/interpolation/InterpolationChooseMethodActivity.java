@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import co.edu.eafit.an.LandingActivity;
 import co.edu.eafit.an.R;
 import co.edu.eafit.an.interpolation.BasedOnESActivity;
+import co.edu.eafit.an.linearsystems.LinearSystemChooseMethodActivity;
 
 public class InterpolationChooseMethodActivity extends AppCompatActivity {
 
@@ -23,6 +25,12 @@ public class InterpolationChooseMethodActivity extends AppCompatActivity {
         points = (double[]) intent.getExtras().getSerializable("points");
         bun = new Bundle();
         bun.putSerializable("points", points);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(InterpolationChooseMethodActivity.this, LandingActivity.class);
+        startActivity(i);
     }
 
     public void boesMethod(View v) {

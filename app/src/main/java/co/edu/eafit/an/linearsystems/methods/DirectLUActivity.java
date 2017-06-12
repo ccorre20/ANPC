@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.linearsystems.ResultsActivity;
 import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class DirectLUActivity extends AppCompatActivity {
@@ -24,55 +25,36 @@ public class DirectLUActivity extends AppCompatActivity {
         Intent intent = getIntent();
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
-        bdoolitle = (Button)findViewById(R.id.direct_lu_doolitle);
-        bcroutl = (Button)findViewById(R.id.direct_lu_croult);
-        bcholesky = (Button)findViewById(R.id.direct_lu_cholesky);
-        brun = (Button)findViewById(R.id.direct_lu_run);
+        choice = (int) intent.getExtras().getSerializable("selection");
+
+        runDirectLU();
     }
 
-    public void doolitle(View v){
-        choice = 1;
-        brun.setEnabled(true);
-        bdoolitle.setEnabled(false);
-        bcroutl.setEnabled(true);
-        bcholesky.setEnabled(true);
-    }
 
-    public void croult(View v){
-        choice = 2;
-        brun.setEnabled(true);
-        bdoolitle.setEnabled(true);
-        bcroutl.setEnabled(false);
-        bcholesky.setEnabled(true);
-    }
+    public void runDirectLU() {
 
-    public void cholesky(View v){
-        choice = 3;
-        brun.setEnabled(true);
-        bdoolitle.setEnabled(true);
-        bcroutl.setEnabled(true);
-        bcholesky.setEnabled(false);
-    }
-
-    public void runDirectLU(View v){
         Utils.LU mlu;
-        switch(choice){
+
+        switch(choice) {
+
             default:
-            case 1:{
+
+            case 0:
                 mlu = Utils.LUDoolitle(a);
                 break;
-            }
-            case 2:{
-                mlu = Utils.LUCroult(a);
-                break;
-            }
-            case 3:{
+            case 1:
                 mlu = Utils.LUCholesky(a);
                 break;
-            }
+            case 2:
+                mlu = Utils.LUCroult(a);
+                break;
         }
+
         double z[] = Utils.progressiveSubstitution(Utils.augmentMatrix(mlu.L,b));
         double x[] = Utils.regressiveSubstitution(Utils.augmentMatrix(mlu.U,z));
         Log.d("XOUTPUT",x.toString());
+        Intent i = new Intent(this, ResultsActivity.class);
+        i.putExtra("x",x);
+        startActivity(i);
     }
 }

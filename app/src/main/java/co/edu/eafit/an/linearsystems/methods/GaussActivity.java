@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.linearsystems.ResultsActivity;
 import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class GaussActivity extends AppCompatActivity {
@@ -19,9 +20,11 @@ public class GaussActivity extends AppCompatActivity {
         Intent intent = getIntent();
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
+
+        runGauss();
     }
 
-    public void runGauss(View v){
+    public void runGauss() {
         int n = a.length;
         double mult;
         //Method Begins
@@ -35,7 +38,8 @@ public class GaussActivity extends AppCompatActivity {
             }
         }
         double x[] = Utils.regressiveSubstitution(m);
+        Intent i = new Intent(this, ResultsActivity.class);
+        i.putExtra("x",x);
+        startActivity(i);
     }
-
-
 }

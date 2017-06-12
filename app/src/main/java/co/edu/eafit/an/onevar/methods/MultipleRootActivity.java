@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,8 +16,8 @@ import co.edu.eafit.an.R;
 
 public class MultipleRootActivity extends AppCompatActivity {
 
-    EditText xa_et, gx_et, jx_et, tol_et, niter_et, results;
-    TextView func;
+    EditText xa_et, gx_et, jx_et, tol_et, niter_et;
+    TextView func, results;
     Expression expr, gexpr, jexpr;
 
     @Override
@@ -29,7 +30,7 @@ public class MultipleRootActivity extends AppCompatActivity {
         tol_et  = (EditText)findViewById(R.id.multiple_root_tolerance);
         niter_et = (EditText)findViewById(R.id.multiple_root_niter);
         func = (TextView)findViewById(R.id.multiple_root_func);
-        results = (EditText)findViewById(R.id.multiple_root_result);
+        results = (TextView)findViewById(R.id.multiple_root_result);
     }
 
     @Override
@@ -42,6 +43,12 @@ public class MultipleRootActivity extends AppCompatActivity {
     }
 
     public void runMultipleRoot(View v){
+
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+        results.setVisibility(View.VISIBLE);
+
         String temp;
         BigDecimal x0 = BigDecimal.valueOf(Double.parseDouble(xa_et.getText().toString()));
         BigDecimal tol = BigDecimal.valueOf(Double.parseDouble(tol_et.getText().toString()));
@@ -52,7 +59,7 @@ public class MultipleRootActivity extends AppCompatActivity {
         gexpr = new Expression(gx_et.getText().toString());
         jexpr = new Expression(jx_et.getText().toString());
         if (niter < 1) {
-            results.setHint("Bad number of iterations");
+            results.setText("Wrong number of iterations");
             return;
         }
         //Method Begins
@@ -78,14 +85,14 @@ public class MultipleRootActivity extends AppCompatActivity {
             temp = "x = " + x0.toString() + " is a root";
             results.setText(temp);
         } else if(error.compareTo(tol) < 0) {
-            temp = "x = " + x0.toString() + " is an approximate root, err=" + error.toString();
+            temp = "x = " + x0.toString() + " is an approximated root\nwith E = " + error.toString();
             results.setText(temp);
         } else if(den.compareTo(BigDecimal.ZERO) == 0) {
             //TODO: Buscar la explicacion de este caso
             temp = "at x = " + x0.toString() + " the function behaves incorrectly";
             results.setText(temp);
         } else {
-            temp = "the method failed after" + niter + " iterations";
+            temp = "the method failed after " + niter + " iterations";
             results.setText(temp);
         }
     }

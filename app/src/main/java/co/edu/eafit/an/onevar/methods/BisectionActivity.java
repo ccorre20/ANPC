@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,8 +16,8 @@ import co.edu.eafit.an.R;
 
 public class BisectionActivity extends AppCompatActivity {
 
-    EditText xmin_et, xmax_et, tol_et, niter_et, results;
-    TextView func;
+    EditText xmin_et, xmax_et, tol_et, niter_et;
+    TextView func, results;
     Expression expr;
 
     @Override
@@ -28,7 +29,7 @@ public class BisectionActivity extends AppCompatActivity {
         tol_et  = (EditText)findViewById(R.id.bisection_tolerance);
         niter_et = (EditText)findViewById(R.id.bisection_niter);
         func = (TextView)findViewById(R.id.bisection_func);
-        results = (EditText)findViewById(R.id.bisection_result);
+        results = (TextView)findViewById(R.id.bisection_result);
     }
 
     @Override
@@ -41,6 +42,12 @@ public class BisectionActivity extends AppCompatActivity {
     }
 
     public void runBisection(View v){
+
+        results.setVisibility(View.VISIBLE);
+
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
         String temp;
         BigDecimal xi = BigDecimal.valueOf(Double.parseDouble(xmin_et.getText().toString()));
         BigDecimal xs = BigDecimal.valueOf(Double.parseDouble(xmax_et.getText().toString()));
@@ -48,7 +55,7 @@ public class BisectionActivity extends AppCompatActivity {
         BigDecimal xaux;
         int niter = Integer.parseInt(niter_et.getText().toString());
         if(niter < 1) {
-            results.setHint("Bad number of iterations");
+            results.setText("Wrong number of iterations");
             return;
         }
         //Method Begins
@@ -97,14 +104,14 @@ public class BisectionActivity extends AppCompatActivity {
                     temp = "x = " + xm.toString() + " is a root";
                     results.setText(temp);
                 } else if (error.compareTo(tol) < 0) {
-                    temp = "x = " + xm.toString() + " is an approximate root, err=" + error.toString();
+                    temp = "x = " + xm.toString() + " is an approximated root\nwith E = " + error.toString();
                     results.setText(temp);
                 } else {
-                    temp = "the method failed after" + niter + " iterations";
+                    temp = "the method failed after " + niter + " iterations";
                     results.setText(temp);
                 }
             } else {
-                temp = "Inadequate interval";
+                temp = "NOT SUITABLE RANGE";
                 results.setText(temp);
             }
         }catch (Exception e){

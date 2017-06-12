@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.linearsystems.ResultsActivity;
 import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class LUGaussActivity extends AppCompatActivity {
@@ -20,12 +21,17 @@ public class LUGaussActivity extends AppCompatActivity {
         Intent intent = getIntent();
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
+
+        runLUGauss();
     }
 
-    public void runLUGauss(View v){
+    public void runLUGauss() {
         Utils.LU mlu = Utils.LUGauss(a);
         double z[] = Utils.progressiveSubstitution(Utils.augmentMatrix(mlu.L,b));
         double x[] = Utils.regressiveSubstitution(Utils.augmentMatrix(mlu.U,z));
         Log.d("XOUTPUT",x.toString());
+        Intent i = new Intent(this, ResultsActivity.class);
+        i.putExtra("x",x);
+        startActivity(i);
     }
 }

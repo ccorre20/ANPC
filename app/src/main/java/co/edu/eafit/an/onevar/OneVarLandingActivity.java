@@ -41,4 +41,22 @@ public class OneVarLandingActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void graph(View v){
+        try {
+            Expression expr = new Expression(func.getText().toString());
+            BigDecimal d = expr.with("x", BigDecimal.ZERO).eval();
+            Log.d("TEST",expr.toString());
+            Log.d("Testing expression", d.toString());
+            BigDecimal e = expr.with("x", BigDecimal.ONE).eval();
+            Log.d("TEST",expr.toString());
+            Log.d("Testing expression", e.toString());
+            //If it gets here it means the expression can be successfully evaluated.
+            Intent i = new Intent(this, GraphActivity.class);
+            i.putExtra("equation", func.getText().toString());
+            startActivity(i);
+        }catch (Expression.ExpressionException e){
+            e.printStackTrace();
+        }
+    }
 }

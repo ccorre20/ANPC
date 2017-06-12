@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,8 +16,8 @@ import co.edu.eafit.an.R;
 
 public class NewtonActivity extends AppCompatActivity {
 
-    EditText xa_et, gx_et, tol_et, niter_et, results;
-    TextView func;
+    EditText xa_et, gx_et, tol_et, niter_et;
+    TextView func, results;
     Expression expr, gexpr;
 
     @Override
@@ -28,7 +29,7 @@ public class NewtonActivity extends AppCompatActivity {
         tol_et  = (EditText)findViewById(R.id.newton_tolerance);
         niter_et = (EditText)findViewById(R.id.newton_niter);
         func = (TextView)findViewById(R.id.newton_func);
-        results = (EditText)findViewById(R.id.newton_result);
+        results = (TextView)findViewById(R.id.newton_result);
     }
 
     @Override
@@ -41,6 +42,12 @@ public class NewtonActivity extends AppCompatActivity {
     }
 
     public void runNewton(View v){
+
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+        results.setVisibility(View.VISIBLE);
+
         String temp;
         BigDecimal x0 = BigDecimal.valueOf(Double.parseDouble(xa_et.getText().toString()));
         BigDecimal tol = BigDecimal.valueOf(Double.parseDouble(tol_et.getText().toString()));
@@ -50,7 +57,7 @@ public class NewtonActivity extends AppCompatActivity {
         //TODO: We have to add checks to this function, otherwise this might crash the app.
         gexpr = new Expression(gx_et.getText().toString());
         if (niter < 1) {
-            results.setHint("Bad number of iterations");
+            results.setText("Wrong number of iterations");
             return;
         }
         //Method Begins
@@ -72,13 +79,13 @@ public class NewtonActivity extends AppCompatActivity {
                 temp = "x = " + x0.toString() + " is a root";
                 results.setText(temp);
             } else if (error.compareTo(tol) < 0) {
-                temp = "x = " + x0.toString() + " is an approximate root, err=" + error.toString();
+                temp = "x = " + x0.toString() + " is an approximated root\nwith E = " + error.toString();
                 results.setText(temp);
             } else if (dy.compareTo(BigDecimal.ZERO) == 0) {
                 temp = "at x = " + x0.toString() + " there are possibly multiple roots";
                 results.setText(temp);
             } else {
-                temp = "the method failed after" + niter + " iterations";
+                temp = "the method failed after " + niter + " iterations";
                 results.setText(temp);
             }
         }catch (Exception e){

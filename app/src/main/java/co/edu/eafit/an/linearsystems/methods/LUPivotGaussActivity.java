@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.linearsystems.ResultsActivity;
 import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class LUPivotGaussActivity extends AppCompatActivity {
@@ -20,9 +21,11 @@ public class LUPivotGaussActivity extends AppCompatActivity {
         Intent intent = getIntent();
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
+
+        runLUPivotGaussActivity();
     }
 
-    public void runLUPivotGaussActivity(View v){
+    public void runLUPivotGaussActivity(){
         Utils.LUMarks mlu = Utils.LUGaussPivotingModified(a);
         //Following the books recommendation to reorganize the vector instead of implementing matrix
         //multiplication.
@@ -30,5 +33,8 @@ public class LUPivotGaussActivity extends AppCompatActivity {
         double z[] = Utils.progressiveSubstitution(Utils.augmentMatrix(mlu.L,b));
         double x[] = Utils.regressiveSubstitution(Utils.augmentMatrix(mlu.U,z));
         Log.d("XOUTPUT",x.toString());
+        Intent i = new Intent(this, ResultsActivity.class);
+        i.putExtra("x",x);
+        startActivity(i);
     }
 }

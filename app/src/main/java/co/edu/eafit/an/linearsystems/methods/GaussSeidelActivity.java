@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.linearsystems.ResultsActivity;
 import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class GaussSeidelActivity extends AppCompatActivity {
@@ -101,7 +102,7 @@ public class GaussSeidelActivity extends AppCompatActivity {
     }
 
     public void Back(View v){
-
+        finish();
     }
 
     public void Tol(View v){
@@ -138,5 +139,8 @@ public class GaussSeidelActivity extends AppCompatActivity {
             }
         }
         Log.d("x",res.toString());
+        Intent i = new Intent(this, ResultsActivity.class);
+        i.putExtra("x",x);
+        startActivity(i);
     }
 }

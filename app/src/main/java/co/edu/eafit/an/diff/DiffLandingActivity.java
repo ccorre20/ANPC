@@ -1,11 +1,14 @@
 package co.edu.eafit.an.diff;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,36 +16,85 @@ import co.edu.eafit.an.R;
 import co.edu.eafit.an.diff.methods.FivePointDiffActivity;
 import co.edu.eafit.an.diff.methods.ThreePointDiffActivity;
 import co.edu.eafit.an.diff.methods.TwoPointActivity;
+import co.edu.eafit.an.linearsystems.LinearSystemChooseMethodActivity;
+import co.edu.eafit.an.linearsystems.methods.GaussActivity;
+import co.edu.eafit.an.linearsystems.methods.PartialPivotGaussActivity;
+import co.edu.eafit.an.linearsystems.methods.TotalPivotGaussActivity;
 
 public class DiffLandingActivity extends AppCompatActivity {
 
-    Button two_btn, three_btn, five_btn, back_btn, insert_btn;
+    Button back_btn, insert_btn, select_points;
     EditText h_et, elem_et;
-    TextView elemhelp_tv, elem_tv;
+    TextView elemhelp_tv, elem_tv, textView202;
+    Space spacecomp, spctxtview2;
     int i, n;
     double h, x[], y[];
+
+    AlertDialog alertDialog1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diff_landing);
-        two_btn = (Button)findViewById(R.id.diff_two_btn);
-        three_btn = (Button)findViewById(R.id.diff_three_btn);
-        five_btn = (Button)findViewById(R.id.diff_five_btn);
         back_btn = (Button)findViewById(R.id.diff_back);
         insert_btn = (Button)findViewById(R.id.diff_insertbtn);
         h_et = (EditText)findViewById(R.id.diff_h_et);
         elem_et = (EditText)findViewById(R.id.diff_elem_et);
         elemhelp_tv = (TextView)findViewById(R.id.diff_elemhelp_tv);
         elem_tv = (TextView)findViewById(R.id.diff_elem_tv);
+        select_points = (Button) findViewById(R.id.select_points);
+        spacecomp = (Space) findViewById(R.id.spacecomp);
+        spctxtview2 = (Space) findViewById(R.id.spctxtview2);
+        textView202 = (TextView) findViewById(R.id.textView202);
         i = -1;
     }
 
-    public void two(View v){
+    public void selectPoints(View v) {
+
+        CharSequence[] values = {"TWO POINTS","THREE POINTS","FIVE POINTS"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(DiffLandingActivity.this);
+        builder.setTitle("AMOUNT OF POINTS");
+
+        builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int item) {
+
+                switch(item) {
+                    case 0:
+                        two();
+                        select_points.setVisibility(View.GONE);
+                        spacecomp.setVisibility(View.GONE);
+                        h_et.setVisibility(View.GONE);
+                        spctxtview2.setVisibility(View.GONE);
+                        textView202.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        three();
+                        select_points.setVisibility(View.GONE);
+                        spacecomp.setVisibility(View.GONE);
+                        h_et.setVisibility(View.GONE);
+                        spctxtview2.setVisibility(View.GONE);
+                        textView202.setVisibility(View.GONE);
+                        break;
+                    case 2:
+                        five();
+                        select_points.setVisibility(View.GONE);
+                        spacecomp.setVisibility(View.GONE);
+                        h_et.setVisibility(View.GONE);
+                        spctxtview2.setVisibility(View.GONE);
+                        textView202.setVisibility(View.GONE);
+                        break;
+                }
+                alertDialog1.dismiss();
+            }
+        });
+
+        alertDialog1 = builder.create();
+        alertDialog1.show();
+    }
+
+    public void two() {
         h = Double.parseDouble(h_et.getText().toString());
-        two_btn.setEnabled(false);
-        three_btn.setEnabled(false);
-        five_btn.setEnabled(false);
         back_btn.setVisibility(View.VISIBLE);
         insert_btn.setVisibility(View.VISIBLE);
         h_et.setEnabled(false);
@@ -60,11 +112,8 @@ public class DiffLandingActivity extends AppCompatActivity {
 
     }
 
-    public void three(View v){
+    public void three() {
         h = Double.parseDouble(h_et.getText().toString());
-        two_btn.setEnabled(false);
-        three_btn.setEnabled(false);
-        five_btn.setEnabled(false);
         back_btn.setVisibility(View.VISIBLE);
         insert_btn.setVisibility(View.VISIBLE);
         h_et.setEnabled(false);
@@ -81,11 +130,8 @@ public class DiffLandingActivity extends AppCompatActivity {
         }
     }
 
-    public void five(View v){
+    public void five() {
         h = Double.parseDouble(h_et.getText().toString());
-        two_btn.setEnabled(false);
-        three_btn.setEnabled(false);
-        five_btn.setEnabled(false);
         back_btn.setVisibility(View.VISIBLE);
         insert_btn.setVisibility(View.VISIBLE);
         h_et.setEnabled(false);
