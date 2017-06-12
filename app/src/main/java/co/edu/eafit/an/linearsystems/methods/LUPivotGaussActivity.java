@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.linearsystems.ResultsActivity;
 import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class LUPivotGaussActivity extends AppCompatActivity {
@@ -30,5 +31,8 @@ public class LUPivotGaussActivity extends AppCompatActivity {
         double z[] = Utils.progressiveSubstitution(Utils.augmentMatrix(mlu.L,b));
         double x[] = Utils.regressiveSubstitution(Utils.augmentMatrix(mlu.U,z));
         Log.d("XOUTPUT",x.toString());
+        Intent i = new Intent(this, ResultsActivity.class);
+        i.putExtra("x",x);
+        startActivity(i);
     }
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.linearsystems.ResultsActivity;
 import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class TotalPivotGaussActivity extends AppCompatActivity {
@@ -46,5 +47,8 @@ public class TotalPivotGaussActivity extends AppCompatActivity {
         double x[] = Utils.regressiveSubstitution(m);
         x = Utils.markAwareX(x,marks);
         Log.d("XOUTPUT",x.toString());
+        Intent i = new Intent(this, ResultsActivity.class);
+        i.putExtra("x",x);
+        startActivity(i);
     }
 }

@@ -70,7 +70,7 @@ public class LinearSystemLandingActivity extends AppCompatActivity {
     }
 
     public void mBack(View v){
-
+        finish();
     }
 
     public void mInsert(View v){

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import co.edu.eafit.an.R;
+import co.edu.eafit.an.linearsystems.ResultsActivity;
 import co.edu.eafit.an.linearsystems.util.Utils;
 
 public class PartialPivotGaussActivity extends AppCompatActivity {
@@ -36,5 +37,8 @@ public class PartialPivotGaussActivity extends AppCompatActivity {
             }
         }
         double x[] = Utils.regressiveSubstitution(m);
+        Intent i = new Intent(this, ResultsActivity.class);
+        i.putExtra("x",x);
+        startActivity(i);
     }
 }

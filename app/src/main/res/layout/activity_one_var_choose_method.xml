@@ -25,14 +25,15 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"
             android:text="One Variable Equations"
             android:textAlignment="center"
-            android:textSize="36dp" />
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="36sp"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
@@ -135,5 +136,6 @@
             android:textColor="@color/textColorButton"
             android:onClick="btnMultipleRoot"
             android:text="Multiple Roots" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
