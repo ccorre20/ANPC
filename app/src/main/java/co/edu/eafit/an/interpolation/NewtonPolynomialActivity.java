@@ -3,6 +3,7 @@ package co.edu.eafit.an.interpolation;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import java.util.Arrays;
 
@@ -12,10 +13,14 @@ public class NewtonPolynomialActivity extends AppCompatActivity {
 
     double points[], b[], p[];
 
+    TextView polynomial1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newton_polynomial);
+
+        polynomial1 = (TextView) findViewById(R.id.polynomial1);
 
         Intent intent = getIntent();
         points = (double[]) intent.getExtras().getSerializable("points");
@@ -39,7 +44,8 @@ public class NewtonPolynomialActivity extends AppCompatActivity {
                 b[i] = (points[(i * 2) + 1] + acum) / findDividerB(points, i);
             }
         }
-        System.out.println(Arrays.toString(b));
+
+        polynomial1.setText(Arrays.toString(b));
     }
 
     public void p(double[] points, double[] b, int index, double x) {

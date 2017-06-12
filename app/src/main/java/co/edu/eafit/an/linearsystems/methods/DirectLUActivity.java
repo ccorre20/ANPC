@@ -25,10 +25,12 @@ public class DirectLUActivity extends AppCompatActivity {
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
         choice = (int) intent.getExtras().getSerializable("selection");
+
+        runDirectLU();
     }
 
 
-    public void runDirectLU(View v) {
+    public void runDirectLU() {
 
         Utils.LU mlu;
 

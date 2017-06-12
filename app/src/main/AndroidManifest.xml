@@ -53,26 +53,39 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".linearsystems.LinearSystemChooseMethodActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".linearsystems.methods.GaussActivity" />
-        <activity android:name=".linearsystems.methods.PartialPivotGaussActivity" />
-        <activity android:name=".linearsystems.methods.TotalPivotGaussActivity" />
-        <activity android:name=".linearsystems.methods.LUGaussActivity" />
-        <activity android:name=".linearsystems.methods.LUPivotGaussActivity" />
-        <activity android:name=".linearsystems.methods.DirectLUActivity" />
-        <activity android:name=".linearsystems.methods.JacobiActivity" />
-        <activity android:name=".linearsystems.methods.GaussSeidelActivity" />
+        <activity android:name=".linearsystems.methods.GaussActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".linearsystems.methods.PartialPivotGaussActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".linearsystems.methods.TotalPivotGaussActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".linearsystems.methods.LUGaussActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".linearsystems.methods.LUPivotGaussActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".linearsystems.methods.DirectLUActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".linearsystems.methods.JacobiActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".linearsystems.methods.GaussSeidelActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
 
-        <activity android:name=".interpolation.BasedOnESActivity" />
+        <activity android:name=".interpolation.BasedOnESActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".interpolation.InterpolationChooseMethodActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".interpolation.InterpolationLandingActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".interpolation.NewtonPolynomialActivity" />
-        <activity android:name=".interpolation.NewtonPolynomialDDActivity" />
-        <activity android:name=".interpolation.LagrangePolynomialActivity" />
-        <activity android:name=".interpolation.NevillesMethodActivity" />
+        <activity android:name=".interpolation.NewtonPolynomialActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".interpolation.NewtonPolynomialDDActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".interpolation.LagrangePolynomialActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".interpolation.NevillesMethodActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
 
         <activity android:name=".diff.DiffLandingActivity"

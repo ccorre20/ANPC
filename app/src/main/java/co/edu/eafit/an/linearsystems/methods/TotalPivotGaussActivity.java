@@ -20,9 +20,11 @@ public class TotalPivotGaussActivity extends AppCompatActivity {
         Intent intent = getIntent();
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
+
+        runTotalPivotGauss();
     }
 
-    public void runTotalPivotGauss(View v){
+    public void runTotalPivotGauss(){
         int n = a.length;
         int marks[] = new int[n];
         for(int i = 0; i<n; i++){

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -15,10 +16,14 @@ public class NewtonPolynomialDDActivity extends AppCompatActivity {
     double[] points;
     double[][] polynomial;
 
+    TextView polynomial2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newton_polynomial_dd);
+
+        polynomial2 = (TextView) findViewById(R.id.polynomial2);
 
         Intent intent = getIntent();
         points = (double[]) intent.getExtras().getSerializable("points");
@@ -42,7 +47,11 @@ public class NewtonPolynomialDDActivity extends AppCompatActivity {
                         / (polynomial[(i - j) + 1][0] - polynomial[i][0]);
         }
 
+        String res = "";
+
         for (int i = 0; i < pointsn; i++)
-            System.out.println(Arrays.toString(polynomial[i])); // Polynomial
+            res += Arrays.toString(polynomial[i]) + "\n"; // Polynomial
+
+        polynomial2.setText(res);
     }
 }

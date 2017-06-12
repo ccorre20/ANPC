@@ -19,9 +19,11 @@ public class PartialPivotGaussActivity extends AppCompatActivity {
         Intent intent = getIntent();
         a = (double[][]) intent.getExtras().getSerializable("a");
         b = (double[]) intent.getExtras().getSerializable("b");
+
+        runPartialPivotGauss();
     }
 
-    public void runPartialPivotGauss(View v){
+    public void runPartialPivotGauss(){
         int n = a.length;
         double mult;
         //Method Begins
